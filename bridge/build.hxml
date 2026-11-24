@@ -1,0 +1,5 @@
+-cp .
+-main PluginMain
+--swf ArenaBridge.swf
+--swf-version 28
+-D swf-header=1:1:30:000000

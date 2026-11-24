@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+/.venv/
+/dist/
+/build/
+*.spec
+*.log
+*.exe
+*.swf
+*.zip
+*.bvnreplay
+*.bvndemo
+*.bvnreport.json
+/AIArena/
+/Entrants/
+/.env

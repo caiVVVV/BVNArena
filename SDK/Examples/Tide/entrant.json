@@ -1,0 +1,7 @@
+{
+  "name": "苍潮",
+  "color": "#2875CA",
+  "protocol": 1,
+  "engine": "bundled-python",
+  "script": "bot.py"
+}

@@ -1,0 +1,1926 @@
+{
+  "gameVersion": "3.8.8.5",
+  "sources": {
+    "catalog": "AIArena/data/catalog.json（参考安装的裁判选角名单）",
+    "lang": "lang/zh-CN.json（游戏名称和图鉴机制）",
+    "base": "readme/3.8.8更新内容.docx",
+    "p1": "readme/3.8.8.1补丁调整.png",
+    "p2": "readme/3.8.8.2补丁调整.png",
+    "p3": "readme/3.8.8.3补丁调整.png",
+    "p4": "readme/3.8.8.4补丁调整.png",
+    "p5": "readme/3.8.8.5补丁调整.png",
+    "v385": "历史留档/3.8.5更新内容.docx",
+    "v3858": "历史留档/3.8.5.8更新内容.docx",
+    "v386": "历史留档/3.8.6更新内容.docx",
+    "v3865": "历史留档/3.8.6.5更新内容.docx"
+  },
+  "fighters": [
+    {
+      "id": "aizen",
+      "name": "蓝染·惣右介",
+      "status": "name-only",
+      "tags": [],
+      "details": [],
+      "sources": [
+        "catalog",
+        "lang"
+      ]
+    },
+    {
+      "id": "aizen_captain",
+      "name": "蓝染·惣右介 队长",
+      "status": "documented",
+      "tags": [
+        "防反",
+        "气量"
+      ],
+      "details": [
+        "普攻收刀时会击倒对手。",
+        "闪身斩（SJ）可在特定距离截击并挑飞对手。",
+        "镜花水月（WI）点按可进入防反，成功反击或长按转入攻击时才扣气。"
+      ],
+      "sources": [
+        "catalog",
+        "lang"
+      ]
+    },
+    {
+      "id": "byakuya",
+      "name": "朽木·白哉",
+      "status": "partial",
+      "tags": [
+        "空中",
+        "追踪"
+      ],
+      "details": [
+        "3.8.6.5 留档中的始解白哉，KJ 前摇可沿垂直方向跟随对手，第三段普攻可衔接 SU。当前版的追踪距离和衔接窗口待验证。"
+      ],
+      "sources": [
+        "catalog",
+        "lang",
+        "v3865"
+      ]
+    },
+    {
+      "id": "chad",
+      "name": "茶渡·泰虎",
+      "status": "partial",
+      "tags": [
+        "连段"
+      ],
+      "details": [
+        "第四段普攻可以衔接 SJ，SJ 可以在后续窗口衔接 WJ。空中普攻不再集气。"
+      ],
+      "sources": [
+        "catalog",
+        "lang",
+        "p3"
+      ]
+    },
+    {
+      "id": "deidara",
+      "name": "迪达拉",
+      "status": "documented",
+      "tags": [
+        "蓄力",
+        "地雷",
+        "气量"
+      ],
+      "details": [
+        "C0·究极艺术（SI）第一次使用是布置准备。之后施放的黏土道具会累积强化，再用 SI 可结算更高伤害。当前资料未确认自身是否扣血。",
+        "3.8.5 留档另有 WJ 后跳掷弹、SJ 布雷以及 SI 可引爆地雷的记载。具体引爆顺序以现版练习核实。"
+      ],
+      "sources": [
+        "catalog",
+        "lang",
+        "v385"
+      ]
+    },
+    {
+      "id": "dordoni",
+      "name": "多鲁多尼·亚历山卓戴尔·索卡奇欧",
+      "status": "documented",
+      "tags": [
+        "防反",
+        "派生"
+      ],
+      "details": [
+        "普攻衔接 WJ 时可跳过防反前摇，直接飞踢。防反动作也可用虚弹（U）取消。"
+      ],
+      "sources": [
+        "catalog",
+        "lang"
+      ]
+    },
+    {
+      "id": "gaara",
+      "name": "我爱罗",
+      "status": "documented",
+      "tags": [
+        "平台",
+        "防御",
+        "派生"
+      ],
+      "details": [
+        "可以格挡背后攻击。空中出招后可暂站在砂上，期间可缓慢移动。最多连续触发三次，使用下台阶输入可以提前解除。",
+        "久不继续普攻也会保留当前段数。替身变为加瑠罗的守护。同名辅助会以砂盾保护己方。"
+      ],
+      "sources": [
+        "catalog",
+        "lang"
+      ]
+    },
+    {
+      "id": "gin",
+      "name": "市丸·银",
+      "status": "documented",
+      "tags": [
+        "派生",
+        "防御"
+      ],
+      "details": [
+        "WJ 第一段真命中时第二段会自动转向。SU 在 3.8.8.4 已取消破防。"
+      ],
+      "sources": [
+        "catalog",
+        "lang",
+        "p4"
+      ]
+    },
+    {
+      "id": "grimmjow",
+      "name": "葛力姆乔·贾卡杰克",
+      "status": "documented",
+      "tags": [
+        "蓄力",
+        "飞行道具"
+      ],
+      "details": [
+        "虚闪（U）按住可提高伤害和范围。释放键的时机决定能否获得最高蓄力效果。"
+      ],
+      "sources": [
+        "catalog",
+        "lang"
+      ]
+    },
+    {
+      "id": "hinata",
+      "name": "日向·雏田",
+      "status": "documented",
+      "tags": [
+        "耐力",
+        "压制",
+        "派生"
+      ],
+      "details": [
+        "多个击倒技能可以衔接以施加耐力压力。超必杀可手动改变位移方向。SU 可以衔接 U，该补丁取消了反向的 U 接 SU。"
+      ],
+      "sources": [
+        "catalog",
+        "lang",
+        "p1"
+      ]
+    },
+    {
+      "id": "ichigo",
+      "name": "黑崎·一护 始解",
+      "status": "partial",
+      "tags": [
+        "月牙",
+        "飞行道具",
+        "派生"
+      ],
+      "details": [
+        "3.8.6 留档的始解形态可从第一、第二段普攻或经指定招式接 U，派生不同方向的月牙。当前版的有效衔接窗口待验证。"
+      ],
+      "sources": [
+        "catalog",
+        "lang",
+        "v386"
+      ]
+    },
+    {
+      "id": "ichigo_zero",
+      "name": "黑崎·一护",
+      "status": "documented",
+      "tags": [
+        "抵挡",
+        "派生"
+      ],
+      "details": [
+        "冲锋（U）能挡一次攻击，随后会减速。维持足够安全的时间才能用 WJ 完成与雨龙的灵魂对接。",
+        "U 打在防御上时，对方受到的耐力削减翻倍，冲锋经过一定时间后开放 SU 衔接。"
+      ],
+      "sources": [
+        "catalog",
+        "lang",
+        "p3"
+      ]
+    },
+    {
+      "id": "ikkaku",
+      "name": "斑目·一角",
+      "status": "partial",
+      "tags": [
+        "空中",
+        "多段"
+      ],
+      "details": [
+        "3.8.6 留档记录 SJ 对后进入范围的目标仍可命中后段，3.8.5.8 留档记录了 KU 的末段攻击。当前准确判定和资源消耗待验证。"
+      ],
+      "sources": [
+        "catalog",
+        "lang",
+        "v386",
+        "v3858"
+      ]
+    },
+    {
+      "id": "itachi",
+      "name": "宇智波·鼬",
+      "status": "documented",
+      "tags": [
+        "自身扣血",
+        "耐力",
+        "气量",
+        "防御",
+        "持续伤害"
+      ],
+      "details": [
+        "天照（I）会消耗自身 50 HP。命中后黑炎持续造成伤害，防御无法挡下黑炎。",
+        "S+J+U 组合会消耗耐力并移到对手身后。可通过移开视线规避幻术·写轮眼（WI）。",
+        "被抓取时可耗尽剩余气量触发魔幻·镜天地转。SJ 自身的抓取段无法被灵替，中间接其他技能后可以被灵替。"
+      ],
+      "sources": [
+        "catalog",
+        "lang",
+        "p1",
+        "p3"
+      ]
+    },
+    {
+      "id": "jiraiya",
+      "name": "自来也",
+      "status": "documented",
+      "tags": [
+        "位移"
+      ],
+      "details": [
+        "屋台崩坏之术（WU）释放过程中可用方向键调节跳跃速度。"
+      ],
+      "sources": [
+        "catalog",
+        "lang"
+      ]
+    },
+    {
+      "id": "juggo",
+      "name": "重吾",
+      "status": "documented",
+      "tags": [
+        "蓄力",
+        "位移",
+        "钢身"
+      ],
+      "details": [
+        "爆碎击（U）蓄力可加大突进距离和伤害。WU 在现行补丁使用白钢，无敌被移除。"
+      ],
+      "sources": [
+        "catalog",
+        "lang",
+        "p4"
+      ]
+    },
+    {
+      "id": "kabuto",
+      "name": "药师·兜",
+      "status": "documented",
+      "tags": [
+        "转向"
+      ],
+      "details": [
+        "用查克拉手术刀的 U 或 SJ 衔接动作时可以转向。"
+      ],
+      "sources": [
+        "catalog",
+        "lang"
+      ]
+    },
+    {
+      "id": "kakashi",
+      "name": "旗木·卡卡西",
+      "status": "partial",
+      "tags": [
+        "投技"
+      ],
+      "details": [
+        "游戏图鉴提示其投技特性。当前资料未给出具体投技判定、耗气和帧数。"
+      ],
+      "sources": [
+        "catalog",
+        "lang"
+      ]
+    },
+    {
+      "id": "kakashi_gsw",
+      "name": "旗木·卡卡西 忍界大战",
+      "status": "documented",
+      "tags": [
+        "强化",
+        "气量",
+        "无敌"
+      ],
+      "details": [
+        "雷·瞬身（SU）和一般必杀增加雷附魔强化层数，强化扩大大刀招式范围。",
+        "身处土流壁（WU）内获得无敌，可掩护其他招式准备动作。超必杀未命中时有神威派生。"
+      ],
+      "sources": [
+        "catalog",
+        "lang"
+      ]
+    },
+    {
+      "id": "kakashi_kamui",
+      "name": "旗木·卡卡西 神威",
+      "status": "documented",
+      "tags": [
+        "吸收",
+        "气量",
+        "派生"
+      ],
+      "details": [
+        "普攻可切换 WI 的形态，WI 连续施放多段时耗气减半。神威（SU）可将飞行物或辅助吸入并摧毁。",
+        "土遁·裂穿牙（SJ）可在前摇取消。空中 KSJ 为向斜下扑袭，使用角度和后续动作按当前位置实测。"
+      ],
+      "sources": [
+        "catalog",
+        "lang",
+        "base"
+      ]
+    },
+    {
+      "id": "kenpachi",
+      "name": "更木·剑八",
+      "status": "documented",
+      "tags": [
+        "承伤",
+        "防反",
+        "全场"
+      ],
+      "details": [
+        "剑道·两断（SI）有全场覆盖。选同名辅助时有原地承伤反击，蓄气期间耐力维持满值。",
+        "I 的第二段后摇存在短窗口，可衔接省去前摇的 SJ。"
+      ],
+      "sources": [
+        "catalog",
+        "lang",
+        "p1",
+        "p3"
+      ]
+    },
+    {
+      "id": "kenshin",
+      "name": "绯村·剑心 浪客",
+      "status": "documented",
+      "tags": [
+        "真实伤害"
+      ],
+      "details": [
+        "九头龙闪（I）造成无法减免的真实伤害，无敌状态仍可回避。"
+      ],
+      "sources": [
+        "catalog",
+        "lang"
+      ]
+    },
+    {
+      "id": "killerbee",
+      "name": "奇拉比",
+      "status": "documented",
+      "tags": [
+        "转向",
+        "抵挡",
+        "飞行道具"
+      ],
+      "details": [
+        "七刀流（SJ）的后续招式可以用方向键选方向。拔刀斩（WJ）可挡飞行物。"
+      ],
+      "sources": [
+        "catalog",
+        "lang"
+      ]
+    },
+    {
+      "id": "kimimaro",
+      "name": "君麻吕",
+      "status": "documented",
+      "tags": [
+        "飞行道具",
+        "捕捉"
+      ],
+      "details": [
+        "U 放出飞行物，命中后可衔接无蓄力动作的 SJ。WU 前摇的原无敌换为钢身效果。"
+      ],
+      "sources": [
+        "catalog",
+        "lang",
+        "base",
+        "p3"
+      ]
+    },
+    {
+      "id": "kimimaro_goninshu",
+      "name": "君麻吕 音忍五人众",
+      "status": "documented",
+      "tags": [
+        "自身扣血",
+        "召唤",
+        "空中"
+      ],
+      "details": [
+        "召唤音忍四人众的招式每次扣自身 10 HP。超必杀也会耗自身 HP，未确认数额。",
+        "四人众招式可衔接 SJ→SU、SJ→WJ、SU→SJ 或 SU→WU。空中可用遁地（SU）和超必杀。选同名辅助可直接向前生成骨刺。"
+      ],
+      "sources": [
+        "catalog",
+        "lang",
+        "base",
+        "p1"
+      ]
+    },
+    {
+      "id": "konan",
+      "name": "小南",
+      "status": "partial",
+      "tags": [
+        "飞行道具",
+        "派生"
+      ],
+      "details": [
+        "3.8.6.5 留档中，U 重做为能多段命中的独立道具，命中 SJ 后衔接的招式会转向。3.8.8.5 的判定与伤害待实测。"
+      ],
+      "sources": [
+        "catalog",
+        "lang",
+        "v3865"
+      ]
+    },
+    {
+      "id": "lee",
+      "name": "李·洛克",
+      "status": "name-only",
+      "tags": [],
+      "details": [],
+      "sources": [
+        "catalog",
+        "lang"
+      ]
+    },
+    {
+      "id": "madara",
+      "name": "宇智波·斑",
+      "status": "documented",
+      "tags": [
+        "防反",
+        "派生"
+      ],
+      "details": [
+        "第三段普攻附带防反。封术吸印（SU）成功时可立刻再用。"
+      ],
+      "sources": [
+        "catalog",
+        "lang"
+      ]
+    },
+    {
+      "id": "mayuri",
+      "name": "涅·茧利",
+      "status": "partial",
+      "tags": [
+        "召唤",
+        "派生"
+      ],
+      "details": [
+        "3.8.5.8 留档记载第三段普攻、WU 和 I 所召唤的音梦共享单个在场名额。3.8.6 重做了 WU 道具，当前版的召唤限制和时机待验证。"
+      ],
+      "sources": [
+        "catalog",
+        "lang",
+        "v3858",
+        "v386"
+      ]
+    },
+    {
+      "id": "naruto",
+      "name": "漩涡·鸣人",
+      "status": "partial",
+      "tags": [
+        "变身",
+        "规则"
+      ],
+      "details": [
+        "开启变身规则时，基础鸣人的默认变身目标为仙人形态，变身时按住下方向可改成尾兽外衣。竞技模式默认关闭变身，基础形态的具体招式条件需按当前对局验证。"
+      ],
+      "sources": [
+        "catalog",
+        "lang",
+        "base"
+      ]
+    },
+    {
+      "id": "naruto_kyubi",
+      "name": "漩涡·鸣人 九尾查克拉模式",
+      "status": "documented",
+      "tags": [
+        "空中",
+        "派生",
+        "位移"
+      ],
+      "details": [
+        "瞬步可以迅速衔接指定招式，空中普攻时自身可穿越台阶。螺旋吸丸（SU）通过其他动作衔接时有额外前置攻击。",
+        "SJ 二段可用普攻键触发，KI 为尾兽闪光弹。别把后续形态或其他鸣人的输入套到此 ID。"
+      ],
+      "sources": [
+        "catalog",
+        "lang",
+        "base",
+        "p1",
+        "p2",
+        "p3",
+        "p4"
+      ]
+    },
+    {
+      "id": "neji",
+      "name": "日向·宁次",
+      "status": "documented",
+      "tags": [
+        "派生"
+      ],
+      "details": [
+        "U 和 SJ 可衔接特殊普攻，具体可衔接时机未确认。"
+      ],
+      "sources": [
+        "catalog",
+        "lang"
+      ]
+    },
+    {
+      "id": "obito",
+      "name": "“宇智波·斑”",
+      "status": "documented",
+      "tags": [
+        "耐力",
+        "无敌",
+        "抓取"
+      ],
+      "details": [
+        "穿透术（U）消耗耐力取得短时间无敌。做出移动和瞬步之外的动作会解除穿透。",
+        "物品吸收释放术（WI）可以抓取金钢对手。选同名辅助时可直接使用豪火球之术。"
+      ],
+      "sources": [
+        "catalog",
+        "lang",
+        "base"
+      ]
+    },
+    {
+      "id": "ogihci",
+      "name": "白·一护",
+      "status": "documented",
+      "tags": [
+        "派生",
+        "月牙"
+      ],
+      "details": [
+        "普通攻击和 U 的突进都可以衔接 U，分别引出特殊月牙攻击。"
+      ],
+      "sources": [
+        "catalog",
+        "lang"
+      ]
+    },
+    {
+      "id": "onoki",
+      "name": "大野木",
+      "status": "documented",
+      "tags": [
+        "气量",
+        "强化",
+        "空中",
+        "飞行道具"
+      ],
+      "details": [
+        "超轻重岩状态让招式期间维持高度，许多招式可接跳跃。WJ 消耗气量强化攻防，I／WI／SI 的尘遁不会获得这项增伤。",
+        "岩拳（SU）可以在空中使用，岩分身（U）可以配合本体发动岩拳。I 可以长按。"
+      ],
+      "sources": [
+        "catalog",
+        "lang",
+        "p3",
+        "p4"
+      ]
+    },
+    {
+      "id": "orihime",
+      "name": "井上·织姬",
+      "status": "documented",
+      "tags": [
+        "治疗",
+        "回复",
+        "追踪",
+        "防反"
+      ],
+      "details": [
+        "孤天斩盾（WJ）有一定范围的自动追踪。双天归盾（WI）可恢复自身 HP。",
+        "SU 是接触触发的防反。3.8.8.4 移除了它的自动转向并缩短了架势时间。"
+      ],
+      "sources": [
+        "catalog",
+        "lang",
+        "base",
+        "p3",
+        "p4"
+      ]
+    },
+    {
+      "id": "orochimaru",
+      "name": "大蛇丸",
+      "status": "documented",
+      "tags": [
+        "飞行道具",
+        "无敌"
+      ],
+      "details": [
+        "超必杀（SI）生成可用方向键操纵的草薙剑。本体在控剑期间无敌。"
+      ],
+      "sources": [
+        "catalog",
+        "lang",
+        "base",
+        "p1"
+      ]
+    },
+    {
+      "id": "pain",
+      "name": "佩恩 六道",
+      "status": "documented",
+      "tags": [
+        "变身",
+        "替身",
+        "派生"
+      ],
+      "details": [
+        "六道形态能在各类动作中无额外准备动作地召唤其他五道。替身变为神罗天征。",
+        "图鉴记载超必杀可切换为天道。原版另有 W+A+D 切换输入，当前协议不允许同时发送相反水平键。天道的 WU 末段真命中时可以接 SI。"
+      ],
+      "sources": [
+        "catalog",
+        "lang",
+        "p1"
+      ]
+    },
+    {
+      "id": "renji",
+      "name": "阿散井·恋次",
+      "status": "documented",
+      "tags": [
+        "抵挡",
+        "飞行道具",
+        "平台",
+        "派生"
+      ],
+      "details": [
+        "旋风（WJ）可以挡飞行物。始解 U 存在接下台阶和 KU 的窗口，实际衔接取决于距离、平台和状态。"
+      ],
+      "sources": [
+        "catalog",
+        "lang",
+        "p3",
+        "p4"
+      ]
+    },
+    {
+      "id": "rukia",
+      "name": "朽木·露琪亚 义骸",
+      "status": "documented",
+      "tags": [
+        "破防",
+        "空中"
+      ],
+      "details": [
+        "义骸的 KI、I 以及 SI 末段具备破防。SI 保护效果由金钢调整为无敌。"
+      ],
+      "sources": [
+        "catalog",
+        "lang",
+        "base",
+        "p3"
+      ]
+    },
+    {
+      "id": "sado_muerte",
+      "name": "茶渡·泰虎 魔人",
+      "status": "documented",
+      "tags": [
+        "防反",
+        "承伤"
+      ],
+      "details": [
+        "盾反（SJ）可反弹防御阶段和技能前摇阶段所承受的伤害。"
+      ],
+      "sources": [
+        "catalog",
+        "lang"
+      ]
+    },
+    {
+      "id": "sakura",
+      "name": "春野·樱",
+      "status": "documented",
+      "tags": [
+        "治疗",
+        "回复",
+        "蓄力",
+        "破防"
+      ],
+      "details": [
+        "部分投掷效果可恢复生命。SU 可额外按住最多 20 帧蓄气，松开进攻并短暂获得白钢。SU 可破防，WJ 的白钢已移除。"
+      ],
+      "sources": [
+        "catalog",
+        "lang",
+        "base",
+        "p3"
+      ]
+    },
+    {
+      "id": "sakura_byakugo",
+      "name": "春野·樱 百豪",
+      "status": "documented",
+      "tags": [
+        "治疗",
+        "回复",
+        "蓄力"
+      ],
+      "details": [
+        "樱花冲（SU）可蓄力以提高突进距离和伤害。SU、I、WI、SI 中的部分效果可恢复自身 HP。"
+      ],
+      "sources": [
+        "catalog",
+        "lang"
+      ]
+    },
+    {
+      "id": "sasuke",
+      "name": "宇智波·佐助",
+      "status": "documented",
+      "tags": [
+        "防反",
+        "飞行道具",
+        "气量"
+      ],
+      "details": [
+        "草薙剑招式可抵挡飞行物。普攻第 2 或第 4 段在适当时间再次点按会派生豪火球。",
+        "千鸟流防反（SU）可取消多种招式后摇，耗气可强制触发防反。超必杀未命中时不扣气。"
+      ],
+      "sources": [
+        "catalog",
+        "lang",
+        "p1"
+      ]
+    },
+    {
+      "id": "sasuke_susanoo",
+      "name": "宇智波·佐助 须佐能乎",
+      "status": "documented",
+      "tags": [
+        "耐力",
+        "钢身",
+        "持续伤害"
+      ],
+      "details": [
+        "SU 开启须佐能乎并获得钢身，启用期间耗耐力且招式改变。开启后再用 WU 可附着黑炎，灼烧近身对手并加快本方耐力消耗。"
+      ],
+      "sources": [
+        "catalog",
+        "lang",
+        "p3"
+      ]
+    },
+    {
+      "id": "soifon",
+      "name": "碎蜂",
+      "status": "documented",
+      "tags": [
+        "气量",
+        "标记",
+        "机动"
+      ],
+      "details": [
+        "瞬哄（SU）持续耗气提高机动，长按会推进气流攻击。",
+        "始解·雀蜂（I）命中有蜂纹华的对手时引爆标记。WI 会给未标记目标加标记，命中已有标记的目标时增加伤害并保留标记。"
+      ],
+      "sources": [
+        "catalog",
+        "lang",
+        "base",
+        "p1"
+      ]
+    },
+    {
+      "id": "starrk",
+      "name": "柯雅泰·史塔克",
+      "status": "documented",
+      "tags": [
+        "蓄力",
+        "召唤",
+        "派生"
+      ],
+      "details": [
+        "SU 的三段攻击都可以用普攻衔接后撤。莉莉妮特在场或对手处于受击状态时，U／WU 的虚闪可免蓄力，并立即收回莉莉妮特。"
+      ],
+      "sources": [
+        "catalog",
+        "lang",
+        "base",
+        "p1"
+      ]
+    },
+    {
+      "id": "suigetsu",
+      "name": "鬼灯·水月",
+      "status": "documented",
+      "tags": [
+        "耐力",
+        "无敌",
+        "位移"
+      ],
+      "details": [
+        "水化（SU）可在招式前摇受击或通过特定衔接触发。水化期间持续耗耐且无敌，可以用方向键快速移动。"
+      ],
+      "sources": [
+        "catalog",
+        "lang"
+      ]
+    },
+    {
+      "id": "temari",
+      "name": "手鞠",
+      "status": "documented",
+      "tags": [
+        "飞行道具"
+      ],
+      "details": [
+        "地面 SJ 的旋风可以吹开飞行道具。"
+      ],
+      "sources": [
+        "catalog",
+        "lang"
+      ]
+    },
+    {
+      "id": "tensa",
+      "name": "天锁斩月",
+      "status": "documented",
+      "tags": [
+        "强化",
+        "空中",
+        "联动"
+      ],
+      "details": [
+        "地面或空中普攻末段后增加 4 层强化。有层数时跳得更高且空中移速更快。斩月融合（SI）可以转换层数。与完全虚化白一护辅助连招可触发特别融合。"
+      ],
+      "sources": [
+        "catalog",
+        "lang",
+        "base",
+        "p1"
+      ]
+    },
+    {
+      "id": "tobi",
+      "name": "自称阿飞的男人",
+      "status": "documented",
+      "tags": [
+        "充能",
+        "耐力",
+        "蓄力",
+        "抓取"
+      ],
+      "details": [
+        "临近受击时用土遁·土龙隐之术（U）可得一格充能，结束土龙隐时按层数强化。SU 的撤离会多耗 20 耐力。",
+        "炸弹投掷（WI）可长按。对方 HP 较低时超必杀会改为物品吸收释放术。"
+      ],
+      "sources": [
+        "catalog",
+        "lang",
+        "p3",
+        "p4"
+      ]
+    },
+    {
+      "id": "toushirou",
+      "name": "日番谷·冬狮郎",
+      "status": "partial",
+      "tags": [
+        "空中",
+        "飞行道具",
+        "钢身"
+      ],
+      "details": [
+        "3.8.6.5 留档的始解形态，空中普攻可接飞行道具 KU，SJ 带白钢，U 有后续二段。当前版的衔接时机与伤害待验证。"
+      ],
+      "sources": [
+        "catalog",
+        "lang",
+        "v3865"
+      ]
+    },
+    {
+      "id": "ulquiorra",
+      "name": "乌尔奇奥拉·西法",
+      "status": "partial",
+      "tags": [
+        "普攻"
+      ],
+      "details": [
+        "补丁记录普攻第一段造成的僵直增加 2 帧，角色受击范围加宽。完整招式效果与资源代价未确认。"
+      ],
+      "sources": [
+        "catalog",
+        "lang",
+        "p3",
+        "p4"
+      ]
+    },
+    {
+      "id": "uryuu",
+      "name": "石田·雨龙",
+      "status": "documented",
+      "tags": [
+        "空中",
+        "射击",
+        "飞行道具"
+      ],
+      "details": [
+        "空中普攻和技能可调整射击角度。"
+      ],
+      "sources": [
+        "catalog",
+        "lang"
+      ]
+    },
+    {
+      "id": "yoruichi",
+      "name": "四枫院·夜一",
+      "status": "documented",
+      "tags": [
+        "自身扣血",
+        "耐力",
+        "机动"
+      ],
+      "details": [
+        "瞬哄·雷神战形（WJ）用本方 HP 换耐力和若干招式强化。历史 3.8.5.8 留档曾记载每耗 10 HP 额外得 10 耐力，当前数值待验证。",
+        "冲刺（U、KU、L）中可接 I 强化机动并回复耐力。U／KU 可连续三次，方向可调。选同名辅助可变化为黑猫。"
+      ],
+      "sources": [
+        "catalog",
+        "lang",
+        "base",
+        "v3858"
+      ]
+    }
+  ],
+  "assists": [
+    {
+      "id": "aizen_muken",
+      "name": "蓝染·惣右介 无间封印",
+      "status": "documented",
+      "tags": [
+        "影响己方",
+        "影响双方",
+        "减速",
+        "飞行道具"
+      ],
+      "details": [
+        "灵压减缓双方行动，扩散时有能越过防御、防反和霸体的攻击判定并破坏飞行物。",
+        "新增该辅助时的官方留档写明，黑棺触发门槛为对手 HP 低于 200 且未处于无敌状态。双方减速已确认，己方扣血条件未确认。"
+      ],
+      "sources": [
+        "catalog",
+        "lang",
+        "base",
+        "v385"
+      ]
+    },
+    {
+      "id": "bonnie",
+      "name": "波妮",
+      "status": "documented",
+      "tags": [
+        "影响己方",
+        "携带",
+        "返还"
+      ],
+      "details": [
+        "接触到角色会带其冲锋，撞边后退出并返还辅助能量。可用 up+assist 或 down+assist 改变出场位置。是否扣己方 HP 未确认。"
+      ],
+      "sources": [
+        "catalog",
+        "lang",
+        "base"
+      ]
+    },
+    {
+      "id": "byakuya",
+      "name": "朽木·白哉",
+      "status": "name-only",
+      "tags": [],
+      "details": [],
+      "sources": [
+        "catalog",
+        "lang"
+      ]
+    },
+    {
+      "id": "choji",
+      "name": "秋道·丁次",
+      "status": "documented",
+      "tags": [
+        "友伤",
+        "无差别",
+        "反弹",
+        "影响己方"
+      ],
+      "details": [
+        "肉弹战车会在场内滚动，撞击判定不分敌我。触边回弹会持续强化撞击。请将己方也视为可能被击中的目标。"
+      ],
+      "sources": [
+        "catalog",
+        "lang"
+      ]
+    },
+    {
+      "id": "debug",
+      "name": "反暗改监督装置",
+      "status": "documented",
+      "tags": [
+        "工具"
+      ],
+      "details": [
+        "该 ID 出现在候选名单中。游戏图鉴标注其旧功能已失修，诊断功能改由原版插件菜单提供。未确认 `assist` 的战斗效果。"
+      ],
+      "sources": [
+        "catalog",
+        "lang"
+      ]
+    },
+    {
+      "id": "fukasaku",
+      "name": "深作仙人&志麻仙人",
+      "status": "documented",
+      "tags": [
+        "防御",
+        "增益"
+      ],
+      "details": [
+        "为使用方提供 +30% 防御，持续 7.5 秒。"
+      ],
+      "sources": [
+        "catalog",
+        "lang"
+      ]
+    },
+    {
+      "id": "gaara",
+      "name": "我爱罗",
+      "status": "documented",
+      "tags": [
+        "钢身",
+        "防守",
+        "墙体"
+      ],
+      "details": [
+        "在砂盾内可获得白钢，砂盾能阻挡对手的移动。"
+      ],
+      "sources": [
+        "catalog",
+        "lang"
+      ]
+    },
+    {
+      "id": "gin",
+      "name": "市丸·银",
+      "status": "name-only",
+      "tags": [],
+      "details": [],
+      "sources": [
+        "catalog",
+        "lang"
+      ]
+    },
+    {
+      "id": "grimmjow",
+      "name": "葛力姆乔·贾卡杰克",
+      "status": "name-only",
+      "tags": [],
+      "details": [],
+      "sources": [
+        "catalog",
+        "lang"
+      ]
+    },
+    {
+      "id": "harribel_resurrection",
+      "name": "蒂雅·赫丽贝尔 归刃",
+      "status": "documented",
+      "tags": [
+        "持续攻击"
+      ],
+      "details": [
+        "断瀑没有直接命中则接续水流攻击。3.8.8 基础更新将主伤害调到 280，防御惩罚随之调整。"
+      ],
+      "sources": [
+        "catalog",
+        "lang",
+        "base"
+      ]
+    },
+    {
+      "id": "hinata",
+      "name": "日向·雏田",
+      "status": "name-only",
+      "tags": [],
+      "details": [],
+      "sources": [
+        "catalog",
+        "lang"
+      ]
+    },
+    {
+      "id": "hiruko",
+      "name": "人傀儡·绯流琥",
+      "status": "partial",
+      "tags": [
+        "充能",
+        "冷却"
+      ],
+      "details": [
+        "辅助充能速率 0.15，补丁给出的等效回满时间约为 22.22 秒。攻击范围和目标待确认。"
+      ],
+      "sources": [
+        "catalog",
+        "lang",
+        "p1"
+      ]
+    },
+    {
+      "id": "hiyori",
+      "name": "猿柿·日世里",
+      "status": "name-only",
+      "tags": [],
+      "details": [],
+      "sources": [
+        "catalog",
+        "lang"
+      ]
+    },
+    {
+      "id": "ichigo_dangai",
+      "name": "黑崎·一护 最后的月牙天冲",
+      "status": "name-only",
+      "tags": [],
+      "details": [],
+      "sources": [
+        "catalog",
+        "lang"
+      ]
+    },
+    {
+      "id": "ikkaku_bankai",
+      "name": "斑目·一角 卍解",
+      "status": "name-only",
+      "tags": [],
+      "details": [],
+      "sources": [
+        "catalog",
+        "lang"
+      ]
+    },
+    {
+      "id": "ino",
+      "name": "山中·井野",
+      "status": "name-only",
+      "tags": [],
+      "details": [],
+      "sources": [
+        "catalog",
+        "lang"
+      ]
+    },
+    {
+      "id": "isane",
+      "name": "虎彻·勇音",
+      "status": "documented",
+      "tags": [
+        "影响己方",
+        "影响双方",
+        "地形"
+      ],
+      "details": [
+        "让地面变滑，双方移动后均难以立即刹停。该说明确认的是对移动的影响。"
+      ],
+      "sources": [
+        "catalog",
+        "lang"
+      ]
+    },
+    {
+      "id": "itachi",
+      "name": "宇智波·鼬",
+      "status": "name-only",
+      "tags": [],
+      "details": [],
+      "sources": [
+        "catalog",
+        "lang"
+      ]
+    },
+    {
+      "id": "jiraiya",
+      "name": "自来也",
+      "status": "partial",
+      "tags": [
+        "攻击"
+      ],
+      "details": [
+        "补丁将伤害调为 240，并更新了攻击范围与末段持续时间。攻击判定形状、可命中目标和额外条件未确认。"
+      ],
+      "sources": [
+        "catalog",
+        "lang",
+        "p1"
+      ]
+    },
+    {
+      "id": "kabuto",
+      "name": "药师·兜",
+      "status": "documented",
+      "tags": [
+        "落空",
+        "陷阱"
+      ],
+      "details": [
+        "查克拉手术刀若落空，会在场上留下一处死魂陷阱。"
+      ],
+      "sources": [
+        "catalog",
+        "lang"
+      ]
+    },
+    {
+      "id": "karin",
+      "name": "香燐",
+      "status": "documented",
+      "tags": [
+        "治疗",
+        "回复",
+        "耐力"
+      ],
+      "details": [
+        "短暂前摇后给使用方 60 帧耐力充盈。使用方是佐助时还可治疗。",
+        "3.8.8 基础说明原为 30 帧，3.8.8.1 已改为 60 帧。"
+      ],
+      "sources": [
+        "catalog",
+        "lang",
+        "p1"
+      ]
+    },
+    {
+      "id": "kenpachi",
+      "name": "更木·剑八",
+      "status": "partial",
+      "tags": [
+        "承伤",
+        "防反",
+        "联动"
+      ],
+      "details": [
+        "和主角色更木·剑八搭配时有原地承伤反击，蓄气期间保持满耐力。搭配其他主角色的效果待确认。"
+      ],
+      "sources": [
+        "catalog",
+        "lang",
+        "p1"
+      ]
+    },
+    {
+      "id": "kensei",
+      "name": "六车·拳西",
+      "status": "documented",
+      "tags": [
+        "影响己方",
+        "影响双方",
+        "吹飞"
+      ],
+      "details": [
+        "生成一阵能影响全场对象的风，处于必杀状态的角色不受影响。3.8.8.1 将吹飞时长改为 5 帧，吹飞状态可正常结算后续攻击。辅助本身是否扣己方 HP 未确认。"
+      ],
+      "sources": [
+        "catalog",
+        "lang",
+        "base",
+        "p1"
+      ]
+    },
+    {
+      "id": "kimimaro",
+      "name": "君麻吕",
+      "status": "partial",
+      "tags": [
+        "骨刺",
+        "联动"
+      ],
+      "details": [
+        "和君麻吕·音忍五人众联动时，召唤可直接生成骨刺。一般召唤效果待确认。"
+      ],
+      "sources": [
+        "catalog",
+        "lang",
+        "p1"
+      ]
+    },
+    {
+      "id": "kira",
+      "name": "吉良·伊鹤",
+      "status": "documented",
+      "tags": [
+        "充能",
+        "返还",
+        "强化"
+      ],
+      "details": [
+        "命中后返还 80% 辅助能量，并强化下一次辅助攻击。"
+      ],
+      "sources": [
+        "catalog",
+        "lang"
+      ]
+    },
+    {
+      "id": "kon",
+      "name": "魂",
+      "status": "documented",
+      "tags": [
+        "增益",
+        "攻击力"
+      ],
+      "details": [
+        "给使用方 +30% 攻击力，持续 5 秒。"
+      ],
+      "sources": [
+        "catalog",
+        "lang"
+      ]
+    },
+    {
+      "id": "madara",
+      "name": "宇智波·斑",
+      "status": "documented",
+      "tags": [
+        "抓取",
+        "防反"
+      ],
+      "details": [
+        "抓取可以破掉防反状态。"
+      ],
+      "sources": [
+        "catalog",
+        "lang"
+      ]
+    },
+    {
+      "id": "minato",
+      "name": "波风·水门",
+      "status": "documented",
+      "tags": [
+        "位移",
+        "二次辅助",
+        "充能"
+      ],
+      "details": [
+        "首次召唤向外投飞雷神苦无，并使使用方速度提高 2 持续 6 秒。苦无仍在飞行或命中留下标记时，可再次召唤并把角色带到苦无或标记处。等效回满约 20.83 秒。"
+      ],
+      "sources": [
+        "catalog",
+        "lang",
+        "p1"
+      ]
+    },
+    {
+      "id": "naruto",
+      "name": "漩涡·鸣人",
+      "status": "documented",
+      "tags": [
+        "召唤",
+        "分身"
+      ],
+      "details": [
+        "召唤会自行行动的影分身。分身完成一套普攻或受到攻击就会消失。"
+      ],
+      "sources": [
+        "catalog",
+        "lang"
+      ]
+    },
+    {
+      "id": "nel",
+      "name": "妮露",
+      "status": "partial",
+      "tags": [
+        "召唤条件"
+      ],
+      "details": [
+        "图鉴记载妮露可在任意状态下召唤，攻击方式、资源扣除与命中条件待确认。"
+      ],
+      "sources": [
+        "catalog",
+        "lang"
+      ]
+    },
+    {
+      "id": "nemu",
+      "name": "涅·音梦",
+      "status": "documented",
+      "tags": [
+        "自身资源",
+        "充能",
+        "耗尽",
+        "回溯"
+      ],
+      "details": [
+        "辅助本体消耗魂魄施放义魂重轮枪，最多 5 次，威能逐次衰减。耗尽后只能发小功率灵弹。",
+        "小队对战的回溯效果有专门触发和次数限制。图鉴给出每输一局可以回溯两次，魂魄耗尽时无法触发。消耗的是辅助魂魄，主角色是否扣 HP 未确认。"
+      ],
+      "sources": [
+        "catalog",
+        "lang"
+      ]
+    },
+    {
+      "id": "obito",
+      "name": "“宇智波·斑”",
+      "status": "partial",
+      "tags": [
+        "豪火球",
+        "联动"
+      ],
+      "details": [
+        "搭配主角色 obito 时会直接使用豪火球。与其他主角色搭配的具体效果待确认。"
+      ],
+      "sources": [
+        "catalog",
+        "lang"
+      ]
+    },
+    {
+      "id": "ogihci_vasto_lord",
+      "name": "白·一护 完全虚化",
+      "status": "partial",
+      "tags": [
+        "联动",
+        "强化"
+      ],
+      "details": [
+        "与天锁斩月组成连招时可触发特别的斩月融合。独立召唤的详细攻击和资源未确认。"
+      ],
+      "sources": [
+        "catalog",
+        "lang"
+      ]
+    },
+    {
+      "id": "onoki",
+      "name": "大野木",
+      "status": "documented",
+      "tags": [
+        "平台",
+        "台阶"
+      ],
+      "details": [
+        "制造临时的岩石台阶，切换场景会移除这类平台。"
+      ],
+      "sources": [
+        "catalog",
+        "lang",
+        "base"
+      ]
+    },
+    {
+      "id": "orihime",
+      "name": "井上·织姬",
+      "status": "documented",
+      "tags": [
+        "治疗",
+        "回复",
+        "气量",
+        "钢身"
+      ],
+      "details": [
+        "使用方 HP 越低，增益越强。单按 assist 短时间给金钢，up+assist 立即给气量，down+assist 开启持续治疗。"
+      ],
+      "sources": [
+        "catalog",
+        "lang"
+      ]
+    },
+    {
+      "id": "rangiku",
+      "name": "松本·乱菊",
+      "status": "partial",
+      "tags": [
+        "击倒",
+        "多段"
+      ],
+      "details": [
+        "3.8.5 留档记载其攻击最后一段造成击倒，3.8.6.5 更新了角色素材。当前的攻击范围和伤害待确认。"
+      ],
+      "sources": [
+        "catalog",
+        "lang",
+        "v385",
+        "v3865"
+      ]
+    },
+    {
+      "id": "renji",
+      "name": "阿散井·恋次",
+      "status": "name-only",
+      "tags": [],
+      "details": [],
+      "sources": [
+        "catalog",
+        "lang"
+      ]
+    },
+    {
+      "id": "riruka",
+      "name": "毒峰·莉露卡",
+      "status": "documented",
+      "tags": [
+        "场景",
+        "召唤",
+        "猪肉先生"
+      ],
+      "details": [
+        "首次在普通场地使用可换到玩偶屋，屋内再次召唤会生成有少量生命值的猪肉先生。",
+        "3.8.8.4 移除其落地无敌并降低耐力上限，耐力用尽会去掉它的钢身。"
+      ],
+      "sources": [
+        "catalog",
+        "lang",
+        "base",
+        "p4"
+      ]
+    },
+    {
+      "id": "sai",
+      "name": "佐井",
+      "status": "documented",
+      "tags": [
+        "破防",
+        "多段"
+      ],
+      "details": [
+        "前段可破防，后段的破防被移除。补丁将末段伤害调为 120，完整判定未知。"
+      ],
+      "sources": [
+        "catalog",
+        "lang",
+        "p4"
+      ]
+    },
+    {
+      "id": "sakura_byakugo",
+      "name": "春野·樱 百豪",
+      "status": "documented",
+      "tags": [
+        "命中",
+        "捕捉",
+        "多段"
+      ],
+      "details": [
+        "一段命中对象后可触发二段。后续捕捉只在对手角色处于附近时生效。"
+      ],
+      "sources": [
+        "catalog",
+        "lang",
+        "p3"
+      ]
+    },
+    {
+      "id": "sasuke_amenotejikara",
+      "name": "宇智波·佐助 天手力",
+      "status": "documented",
+      "tags": [
+        "影响己方",
+        "换位",
+        "飞行道具"
+      ],
+      "details": [
+        "单按 assist 时交换双方角色位置。up+assist 换到己方飞行物的位置，down+assist 换到对方飞行物的位置。",
+        "3.8.5 留档记载找不到相应飞行物时会回退到双方换位。距离选择规则在当前版本待实测。"
+      ],
+      "sources": [
+        "catalog",
+        "lang",
+        "v385"
+      ]
+    },
+    {
+      "id": "shikamaru",
+      "name": "奈良·鹿丸",
+      "status": "name-only",
+      "tags": [],
+      "details": [],
+      "sources": [
+        "catalog",
+        "lang"
+      ]
+    },
+    {
+      "id": "shishio",
+      "name": "志志雄·真实",
+      "status": "documented",
+      "tags": [
+        "充能",
+        "返还"
+      ],
+      "details": [
+        "命中时返还 50% 辅助能量。"
+      ],
+      "sources": [
+        "catalog",
+        "lang"
+      ]
+    },
+    {
+      "id": "shunsui",
+      "name": "京乐·春水",
+      "status": "documented",
+      "tags": [
+        "服装",
+        "方向辅助"
+      ],
+      "details": [
+        "使用艳鬼。单按 assist 对应粉色，up+assist 为白色，down+assist 为黑色。对手身上指定色面积越大，斩击越强。"
+      ],
+      "sources": [
+        "catalog",
+        "lang"
+      ]
+    },
+    {
+      "id": "soifon",
+      "name": "碎蜂",
+      "status": "partial",
+      "tags": [
+        "攻击",
+        "充能"
+      ],
+      "details": [
+        "补丁将伤害调为 300，等效回满时间约为 25.64 秒。命中条件待确认。"
+      ],
+      "sources": [
+        "catalog",
+        "lang",
+        "p1"
+      ]
+    },
+    {
+      "id": "starrk_resurrection",
+      "name": "柯雅泰·史塔克 归刃",
+      "status": "documented",
+      "tags": [
+        "追踪",
+        "召唤",
+        "充能"
+      ],
+      "details": [
+        "召出狼群在全场持续追击，可通过直接攻击角色来阻止。等效回满时间约为 22.22 秒。"
+      ],
+      "sources": [
+        "catalog",
+        "lang",
+        "p4"
+      ]
+    },
+    {
+      "id": "suigetsu_taka",
+      "name": "鬼灯·水月 鹰小队",
+      "status": "documented",
+      "tags": [
+        "受击触发",
+        "反击"
+      ],
+      "details": [
+        "水化潜伏。使用方受击时从对手背后偷袭，等待达到上限仍未触发时也会出击。"
+      ],
+      "sources": [
+        "catalog",
+        "lang"
+      ]
+    },
+    {
+      "id": "tayuya",
+      "name": "多由也",
+      "status": "name-only",
+      "tags": [],
+      "details": [],
+      "sources": [
+        "catalog",
+        "lang"
+      ]
+    },
+    {
+      "id": "temari",
+      "name": "手鞠",
+      "status": "documented",
+      "tags": [
+        "位移",
+        "持续效果"
+      ],
+      "details": [
+        "发动持续强风推动对手。"
+      ],
+      "sources": [
+        "catalog",
+        "lang"
+      ]
+    },
+    {
+      "id": "tenten",
+      "name": "天天",
+      "status": "partial",
+      "tags": [
+        "充能",
+        "冷却"
+      ],
+      "details": [
+        "辅助充能速率 0.15，补丁给出的等效回满时间约为 22.22 秒。攻击与命中条件待确认。"
+      ],
+      "sources": [
+        "catalog",
+        "lang",
+        "p4"
+      ]
+    },
+    {
+      "id": "toushirou",
+      "name": "日番谷·冬狮郎",
+      "status": "documented",
+      "tags": [
+        "控制",
+        "冻结"
+      ],
+      "details": [
+        "冻结令对手无法行动并获得与白钢相当的保护。攻击冻结目标会减伤，且冻结期攻击不计入连段保护。冻结不再锁定位置和重力，未冻住时也不会附带击倒。"
+      ],
+      "sources": [
+        "catalog",
+        "lang",
+        "base"
+      ]
+    },
+    {
+      "id": "tsunade",
+      "name": "纲手",
+      "status": "documented",
+      "tags": [
+        "治疗",
+        "回复"
+      ],
+      "details": [
+        "召唤时给使用方少量治疗，具体恢复量未确认。"
+      ],
+      "sources": [
+        "catalog",
+        "lang"
+      ]
+    },
+    {
+      "id": "urahara",
+      "name": "浦原·喜助",
+      "status": "documented",
+      "tags": [
+        "位移",
+        "穿界门",
+        "辅助能量",
+        "冷却"
+      ],
+      "details": [
+        "开局布置一扇穿界门，给满辅助能量。down+assist 可在本方原地再布门。使用门穿梭有独立冷却，不耗辅助能量。"
+      ],
+      "sources": [
+        "catalog",
+        "lang"
+      ]
+    },
+    {
+      "id": "uryuu",
+      "name": "石田·雨龙",
+      "status": "name-only",
+      "tags": [],
+      "details": [],
+      "sources": [
+        "catalog",
+        "lang"
+      ]
+    },
+    {
+      "id": "utakata",
+      "name": "泡沫",
+      "status": "name-only",
+      "tags": [],
+      "details": [],
+      "sources": [
+        "catalog",
+        "lang"
+      ]
+    },
+    {
+      "id": "yachiru",
+      "name": "草鹿·八千流",
+      "status": "documented",
+      "tags": [
+        "移动",
+        "速度",
+        "增益"
+      ],
+      "details": [
+        "攻击后会留场往返。使用方碰到她可以获得持续 2 秒的 +6 速度。"
+      ],
+      "sources": [
+        "catalog",
+        "lang"
+      ]
+    },
+    {
+      "id": "yamamoto",
+      "name": "山本·元柳斎·重国",
+      "status": "documented",
+      "tags": [
+        "攻击",
+        "火柱",
+        "充能"
+      ],
+      "details": [
+        "火柱攻击。补丁将火柱伤害调为 300，并将等效回满时间调为约 30.30 秒。"
+      ],
+      "sources": [
+        "catalog",
+        "lang",
+        "p1",
+        "p2"
+      ]
+    },
+    {
+      "id": "yoruichi",
+      "name": "四枫院·夜一",
+      "status": "documented",
+      "tags": [
+        "位移",
+        "速度",
+        "增益",
+        "充能"
+      ],
+      "details": [
+        "立即带使用方向前传送短距离，提供 3 秒的 +2 速度。等效回满时间约为 20.83 秒。"
+      ],
+      "sources": [
+        "catalog",
+        "lang",
+        "p1"
+      ]
+    },
+    {
+      "id": "zetsu",
+      "name": "绝",
+      "status": "documented",
+      "tags": [
+        "触发",
+        "落地",
+        "陷阱"
+      ],
+      "details": [
+        "召唤后潜入地下等待。对手落地时会从其脚下出击。"
+      ],
+      "sources": [
+        "catalog",
+        "lang"
+      ]
+    }
+  ]
+}

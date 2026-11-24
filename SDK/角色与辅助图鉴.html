@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>角色与辅助图鉴 · BVN 3.8.8.5</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --background: #101219;
+      --panel: #1a1e29;
+      --line: #343c53;
+      --text: #f3f5fc;
+      --muted: #c2cbe0;
+      --accent: #a9c3ff;
+      --own-side: #ffcc98;
+      font-family: Inter, "Microsoft YaHei UI", "Microsoft YaHei", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    body { margin: 0; background: var(--background); color: var(--text); line-height: 1.65; }
+    main { width: min(76rem, 100% - 2.5rem); margin-inline: auto; padding-block: 2.25rem 4rem; }
+    header { padding-block-end: 1.75rem; border-block-end: 1px solid var(--line); }
+    h1, h2 { line-height: 1.25; }
+    h1 { font-size: clamp(2rem, 4.5vw, 3.3rem); margin: 0.4rem 0 1rem; }
+    h2 { font-size: 1.15rem; margin: 0.4rem 0 0.45rem; overflow-wrap: anywhere; }
+    p { margin: 0.4rem 0; }
+    .version, .entry-label { color: var(--accent); font-size: 0.875rem; font-weight: 650; }
+    .info, .entry li, summary, .count { color: var(--muted); }
+    a { color: var(--accent); text-underline-offset: 0.2em; }
+    a:hover { text-decoration-thickness: 0.15em; }
+    details { padding: 0.75rem 0 0; }
+    summary { cursor: pointer; width: fit-content; }
+    .filters { display: flex; align-items: end; gap: 0.8rem 1rem; flex-wrap: wrap; margin-top: 1.3rem; }
+    .field { display: flex; flex-direction: column; gap: 0.25rem; font-size: 0.9rem; }
+    .search { flex: 1 1 19rem; }
+    input[type="search"], select {
+      color: var(--text); background: var(--panel); border: 1px solid var(--line);
+      border-radius: 0.5rem; padding: 0.65rem; min-height: 2.8rem; font: inherit;
+    }
+    input[type="search"] { width: 100%; }
+    input[type="checkbox"] { accent-color: var(--accent); }
+    input::placeholder { color: #a8b2ca; }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    .side-filter { min-height: 2.8rem; display: flex; gap: 0.5rem; align-items: center; font-size: 0.9rem; }
+    .count { margin-block: 1.25rem 0.75rem; }
+    .entries { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); gap: 0.85rem; }
+    .entry { background: var(--panel); border: 1px solid var(--line); border-radius: 0.65rem; padding: 1.05rem 1.1rem; }
+    .entry:target { border-color: var(--accent); }
+    .entry-label { margin: 0; }
+    .entry code { overflow-wrap: anywhere; color: var(--accent); }
+    .entry ul { margin: 0.65rem 0 0; padding-inline-start: 1.25em; }
+    .entry li + li { margin-top: 0.35rem; }
+    .entry .source { color: var(--muted); margin-block: 0.65rem 0; font-size: 0.78rem; }
+    .effect-on-own-side { border-inline-start: 3px solid var(--own-side); }
+    .effect-on-own-side .entry-label { color: var(--own-side); }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <p class="version">死神vs火影 竞技版 · Windows 3.8.8.5</p>
+      <h1>角色与辅助图鉴</h1>
+      <p>55 个角色 · 59 个辅助。以对局开始时裁判发送的 <code>draft</code> 名单为准。</p>
+      <p class="info">用名称、协议 ID、招式或效果搜索，例如「天照」「耐力」「友伤」「down+assist」。条目保留有资料依据的机制，其余效果和数值待训练验证。</p>
+      <details>
+        <summary>按键记法、资料来源与适用范围</summary>
+        <p>W/S 为 <code>up/down</code>，J 为 <code>attack</code>，K 为 <code>jump</code>，L 为 <code>dash</code>，U 为 <code>skill</code>，I 为 <code>super</code>，O 为 <code>assist</code>。SJ 即 <code>["down","attack"]</code>。KJ 通常指起跳后在空中使用普攻。具体操作参见 <a href="协议.md#按键与组合">SDK 协议</a>。</p>
+        <p>名称与机制出自本版游戏的 <code>lang/zh-CN.json</code>。候选范围来自实际的 <code>AIArena/data/catalog.json</code>，招式补丁依本版安装内 <code>readme</code> 的 3.8.8 及后续补丁资料。条目中明确标注版本的历史留档可作为练习线索。辅助等效回满时间来自对应补丁的默认设置，实际可受比赛规则影响。<a href="https://bvn-sports.com/">游戏官方竞技版入口</a></p>
+        <p>「影响己方」筛选含主角色自身扣血、无差别命中以及双方都可能受到的移动或控制效果。各条目会说明已确认的范围。用于开发和赛前训练时，可结合对应版本的资料和实机观测。正式对局按裁判当局的数据决策。</p>
+        <p><a href="角色与辅助数据.json">下载供程序读取的 JSON</a></p>
+      </details>
+    </header>
+    <div id="filters" class="filters" hidden>
+      <label class="field search">搜索 <input id="query" type="search" placeholder="名称、ID、招式、效果" autocomplete="off" aria-controls="entries"></label>
+      <label class="field">类别
+        <select id="kind" aria-controls="entries">
+          <option value="all">全部</option>
+          <option value="fighter">角色</option>
+          <option value="assist">辅助</option>
+        </select>
+      </label>
+      <label class="side-filter"><input id="own-side" type="checkbox" aria-controls="entries">影响己方</label>
+    </div>
+    <noscript><p class="info">浏览器已关闭 JavaScript。可使用 Ctrl+F 搜索以下完整图鉴。</p></noscript>
+    <p id="count" class="count" role="status" hidden></p>
+    <section id="entries" class="entries" aria-label="图鉴条目">
+<article id="fighter-aizen" class="entry" data-kind="fighter" data-own-side="no" data-tags=""><p class="entry-label">角色 · 技能待验证</p><h2>蓝染·惣右介</h2><code>aizen</code><ul><li>当前版本资料可确认名称和 ID，具体招式、伤害和触发条件待实测。</li></ul></article>
+<article id="fighter-aizen_captain" class="entry" data-kind="fighter" data-own-side="no" data-tags="防反 气量"><p class="entry-label">角色 · 有机制资料</p><h2>蓝染·惣右介 队长</h2><code>aizen_captain</code><ul><li>普攻收刀时会击倒对手。</li><li>闪身斩（SJ）可在特定距离截击并挑飞对手。</li><li>镜花水月（WI）点按可进入防反，成功反击或长按转入攻击时才扣气。</li></ul></article>
+<article id="fighter-byakuya" class="entry" data-kind="fighter" data-own-side="no" data-tags="空中 追踪"><p class="entry-label">角色 · 部分资料</p><h2>朽木·白哉</h2><code>byakuya</code><ul><li>3.8.6.5 留档中的始解白哉，KJ 前摇可沿垂直方向跟随对手，第三段普攻可衔接 SU。当前版的追踪距离和衔接窗口待验证。</li></ul><p class="source">历史留档/3.8.6.5更新内容.docx</p></article>
+<article id="fighter-chad" class="entry" data-kind="fighter" data-own-side="no" data-tags="连段"><p class="entry-label">角色 · 部分资料</p><h2>茶渡·泰虎</h2><code>chad</code><ul><li>第四段普攻可以衔接 SJ，SJ 可以在后续窗口衔接 WJ。空中普攻不再集气。</li></ul><p class="source">readme/3.8.8.3补丁调整.png</p></article>
+<article id="fighter-deidara" class="entry" data-kind="fighter" data-own-side="no" data-tags="蓄力 地雷 气量"><p class="entry-label">角色 · 有机制资料</p><h2>迪达拉</h2><code>deidara</code><ul><li>C0·究极艺术（SI）第一次使用是布置准备。之后施放的黏土道具会累积强化，再用 SI 可结算更高伤害。当前资料未确认自身是否扣血。</li><li>3.8.5 留档另有 WJ 后跳掷弹、SJ 布雷以及 SI 可引爆地雷的记载。具体引爆顺序以现版练习核实。</li></ul><p class="source">历史留档/3.8.5更新内容.docx</p></article>
+<article id="fighter-dordoni" class="entry" data-kind="fighter" data-own-side="no" data-tags="防反 派生"><p class="entry-label">角色 · 有机制资料</p><h2>多鲁多尼·亚历山卓戴尔·索卡奇欧</h2><code>dordoni</code><ul><li>普攻衔接 WJ 时可跳过防反前摇，直接飞踢。防反动作也可用虚弹（U）取消。</li></ul></article>
+<article id="fighter-gaara" class="entry" data-kind="fighter" data-own-side="no" data-tags="平台 防御 派生"><p class="entry-label">角色 · 有机制资料</p><h2>我爱罗</h2><code>gaara</code><ul><li>可以格挡背后攻击。空中出招后可暂站在砂上，期间可缓慢移动。最多连续触发三次，使用下台阶输入可以提前解除。</li><li>久不继续普攻也会保留当前段数。替身变为加瑠罗的守护。同名辅助会以砂盾保护己方。</li></ul></article>
+<article id="fighter-gin" class="entry" data-kind="fighter" data-own-side="no" data-tags="派生 防御"><p class="entry-label">角色 · 有机制资料</p><h2>市丸·银</h2><code>gin</code><ul><li>WJ 第一段真命中时第二段会自动转向。SU 在 3.8.8.4 已取消破防。</li></ul><p class="source">readme/3.8.8.4补丁调整.png</p></article>
+<article id="fighter-grimmjow" class="entry" data-kind="fighter" data-own-side="no" data-tags="蓄力 飞行道具"><p class="entry-label">角色 · 有机制资料</p><h2>葛力姆乔·贾卡杰克</h2><code>grimmjow</code><ul><li>虚闪（U）按住可提高伤害和范围。释放键的时机决定能否获得最高蓄力效果。</li></ul></article>
+<article id="fighter-hinata" class="entry" data-kind="fighter" data-own-side="no" data-tags="耐力 压制 派生"><p class="entry-label">角色 · 有机制资料</p><h2>日向·雏田</h2><code>hinata</code><ul><li>多个击倒技能可以衔接以施加耐力压力。超必杀可手动改变位移方向。SU 可以衔接 U，该补丁取消了反向的 U 接 SU。</li></ul><p class="source">readme/3.8.8.1补丁调整.png</p></article>
+<article id="fighter-ichigo" class="entry" data-kind="fighter" data-own-side="no" data-tags="月牙 飞行道具 派生"><p class="entry-label">角色 · 部分资料</p><h2>黑崎·一护 始解</h2><code>ichigo</code><ul><li>3.8.6 留档的始解形态可从第一、第二段普攻或经指定招式接 U，派生不同方向的月牙。当前版的有效衔接窗口待验证。</li></ul><p class="source">历史留档/3.8.6更新内容.docx</p></article>
+<article id="fighter-ichigo_zero" class="entry" data-kind="fighter" data-own-side="no" data-tags="抵挡 派生"><p class="entry-label">角色 · 有机制资料</p><h2>黑崎·一护</h2><code>ichigo_zero</code><ul><li>冲锋（U）能挡一次攻击，随后会减速。维持足够安全的时间才能用 WJ 完成与雨龙的灵魂对接。</li><li>U 打在防御上时，对方受到的耐力削减翻倍，冲锋经过一定时间后开放 SU 衔接。</li></ul><p class="source">readme/3.8.8.3补丁调整.png</p></article>
+<article id="fighter-ikkaku" class="entry" data-kind="fighter" data-own-side="no" data-tags="空中 多段"><p class="entry-label">角色 · 部分资料</p><h2>斑目·一角</h2><code>ikkaku</code><ul><li>3.8.6 留档记录 SJ 对后进入范围的目标仍可命中后段，3.8.5.8 留档记录了 KU 的末段攻击。当前准确判定和资源消耗待验证。</li></ul><p class="source">历史留档/3.8.6更新内容.docx、历史留档/3.8.5.8更新内容.docx</p></article>
+<article id="fighter-itachi" class="entry effect-on-own-side" data-kind="fighter" data-own-side="yes" data-tags="自身扣血 耐力 气量 防御 持续伤害"><p class="entry-label">角色 · 有机制资料</p><h2>宇智波·鼬</h2><code>itachi</code><ul><li>天照（I）会消耗自身 50 HP。命中后黑炎持续造成伤害，防御无法挡下黑炎。</li><li>S+J+U 组合会消耗耐力并移到对手身后。可通过移开视线规避幻术·写轮眼（WI）。</li><li>被抓取时可耗尽剩余气量触发魔幻·镜天地转。SJ 自身的抓取段无法被灵替，中间接其他技能后可以被灵替。</li></ul><p class="source">readme/3.8.8.1补丁调整.png、readme/3.8.8.3补丁调整.png</p></article>
+<article id="fighter-jiraiya" class="entry" data-kind="fighter" data-own-side="no" data-tags="位移"><p class="entry-label">角色 · 有机制资料</p><h2>自来也</h2><code>jiraiya</code><ul><li>屋台崩坏之术（WU）释放过程中可用方向键调节跳跃速度。</li></ul></article>
+<article id="fighter-juggo" class="entry" data-kind="fighter" data-own-side="no" data-tags="蓄力 位移 钢身"><p class="entry-label">角色 · 有机制资料</p><h2>重吾</h2><code>juggo</code><ul><li>爆碎击（U）蓄力可加大突进距离和伤害。WU 在现行补丁使用白钢，无敌被移除。</li></ul><p class="source">readme/3.8.8.4补丁调整.png</p></article>
+<article id="fighter-kabuto" class="entry" data-kind="fighter" data-own-side="no" data-tags="转向"><p class="entry-label">角色 · 有机制资料</p><h2>药师·兜</h2><code>kabuto</code><ul><li>用查克拉手术刀的 U 或 SJ 衔接动作时可以转向。</li></ul></article>
+<article id="fighter-kakashi" class="entry" data-kind="fighter" data-own-side="no" data-tags="投技"><p class="entry-label">角色 · 部分资料</p><h2>旗木·卡卡西</h2><code>kakashi</code><ul><li>游戏图鉴提示其投技特性。当前资料未给出具体投技判定、耗气和帧数。</li></ul></article>
+<article id="fighter-kakashi_gsw" class="entry" data-kind="fighter" data-own-side="no" data-tags="强化 气量 无敌"><p class="entry-label">角色 · 有机制资料</p><h2>旗木·卡卡西 忍界大战</h2><code>kakashi_gsw</code><ul><li>雷·瞬身（SU）和一般必杀增加雷附魔强化层数，强化扩大大刀招式范围。</li><li>身处土流壁（WU）内获得无敌，可掩护其他招式准备动作。超必杀未命中时有神威派生。</li></ul></article>
+<article id="fighter-kakashi_kamui" class="entry" data-kind="fighter" data-own-side="no" data-tags="吸收 气量 派生"><p class="entry-label">角色 · 有机制资料</p><h2>旗木·卡卡西 神威</h2><code>kakashi_kamui</code><ul><li>普攻可切换 WI 的形态，WI 连续施放多段时耗气减半。神威（SU）可将飞行物或辅助吸入并摧毁。</li><li>土遁·裂穿牙（SJ）可在前摇取消。空中 KSJ 为向斜下扑袭，使用角度和后续动作按当前位置实测。</li></ul><p class="source">readme/3.8.8更新内容.docx</p></article>
+<article id="fighter-kenpachi" class="entry" data-kind="fighter" data-own-side="no" data-tags="承伤 防反 全场"><p class="entry-label">角色 · 有机制资料</p><h2>更木·剑八</h2><code>kenpachi</code><ul><li>剑道·两断（SI）有全场覆盖。选同名辅助时有原地承伤反击，蓄气期间耐力维持满值。</li><li>I 的第二段后摇存在短窗口，可衔接省去前摇的 SJ。</li></ul><p class="source">readme/3.8.8.1补丁调整.png、readme/3.8.8.3补丁调整.png</p></article>
+<article id="fighter-kenshin" class="entry" data-kind="fighter" data-own-side="no" data-tags="真实伤害"><p class="entry-label">角色 · 有机制资料</p><h2>绯村·剑心 浪客</h2><code>kenshin</code><ul><li>九头龙闪（I）造成无法减免的真实伤害，无敌状态仍可回避。</li></ul></article>
+<article id="fighter-killerbee" class="entry" data-kind="fighter" data-own-side="no" data-tags="转向 抵挡 飞行道具"><p class="entry-label">角色 · 有机制资料</p><h2>奇拉比</h2><code>killerbee</code><ul><li>七刀流（SJ）的后续招式可以用方向键选方向。拔刀斩（WJ）可挡飞行物。</li></ul></article>
+<article id="fighter-kimimaro" class="entry" data-kind="fighter" data-own-side="no" data-tags="飞行道具 捕捉"><p class="entry-label">角色 · 有机制资料</p><h2>君麻吕</h2><code>kimimaro</code><ul><li>U 放出飞行物，命中后可衔接无蓄力动作的 SJ。WU 前摇的原无敌换为钢身效果。</li></ul><p class="source">readme/3.8.8更新内容.docx、readme/3.8.8.3补丁调整.png</p></article>
+<article id="fighter-kimimaro_goninshu" class="entry effect-on-own-side" data-kind="fighter" data-own-side="yes" data-tags="自身扣血 召唤 空中"><p class="entry-label">角色 · 有机制资料</p><h2>君麻吕 音忍五人众</h2><code>kimimaro_goninshu</code><ul><li>召唤音忍四人众的招式每次扣自身 10 HP。超必杀也会耗自身 HP，未确认数额。</li><li>四人众招式可衔接 SJ→SU、SJ→WJ、SU→SJ 或 SU→WU。空中可用遁地（SU）和超必杀。选同名辅助可直接向前生成骨刺。</li></ul><p class="source">readme/3.8.8更新内容.docx、readme/3.8.8.1补丁调整.png</p></article>
+<article id="fighter-konan" class="entry" data-kind="fighter" data-own-side="no" data-tags="飞行道具 派生"><p class="entry-label">角色 · 部分资料</p><h2>小南</h2><code>konan</code><ul><li>3.8.6.5 留档中，U 重做为能多段命中的独立道具，命中 SJ 后衔接的招式会转向。3.8.8.5 的判定与伤害待实测。</li></ul><p class="source">历史留档/3.8.6.5更新内容.docx</p></article>
+<article id="fighter-lee" class="entry" data-kind="fighter" data-own-side="no" data-tags=""><p class="entry-label">角色 · 技能待验证</p><h2>李·洛克</h2><code>lee</code><ul><li>当前版本资料可确认名称和 ID，具体招式、伤害和触发条件待实测。</li></ul></article>
+<article id="fighter-madara" class="entry" data-kind="fighter" data-own-side="no" data-tags="防反 派生"><p class="entry-label">角色 · 有机制资料</p><h2>宇智波·斑</h2><code>madara</code><ul><li>第三段普攻附带防反。封术吸印（SU）成功时可立刻再用。</li></ul></article>
+<article id="fighter-mayuri" class="entry" data-kind="fighter" data-own-side="no" data-tags="召唤 派生"><p class="entry-label">角色 · 部分资料</p><h2>涅·茧利</h2><code>mayuri</code><ul><li>3.8.5.8 留档记载第三段普攻、WU 和 I 所召唤的音梦共享单个在场名额。3.8.6 重做了 WU 道具，当前版的召唤限制和时机待验证。</li></ul><p class="source">历史留档/3.8.5.8更新内容.docx、历史留档/3.8.6更新内容.docx</p></article>
+<article id="fighter-naruto" class="entry" data-kind="fighter" data-own-side="no" data-tags="变身 规则"><p class="entry-label">角色 · 部分资料</p><h2>漩涡·鸣人</h2><code>naruto</code><ul><li>开启变身规则时，基础鸣人的默认变身目标为仙人形态，变身时按住下方向可改成尾兽外衣。竞技模式默认关闭变身，基础形态的具体招式条件需按当前对局验证。</li></ul><p class="source">readme/3.8.8更新内容.docx</p></article>
+<article id="fighter-naruto_kyubi" class="entry" data-kind="fighter" data-own-side="no" data-tags="空中 派生 位移"><p class="entry-label">角色 · 有机制资料</p><h2>漩涡·鸣人 九尾查克拉模式</h2><code>naruto_kyubi</code><ul><li>瞬步可以迅速衔接指定招式，空中普攻时自身可穿越台阶。螺旋吸丸（SU）通过其他动作衔接时有额外前置攻击。</li><li>SJ 二段可用普攻键触发，KI 为尾兽闪光弹。别把后续形态或其他鸣人的输入套到此 ID。</li></ul><p class="source">readme/3.8.8更新内容.docx、readme/3.8.8.1补丁调整.png、readme/3.8.8.2补丁调整.png、readme/3.8.8.3补丁调整.png、readme/3.8.8.4补丁调整.png</p></article>
+<article id="fighter-neji" class="entry" data-kind="fighter" data-own-side="no" data-tags="派生"><p class="entry-label">角色 · 有机制资料</p><h2>日向·宁次</h2><code>neji</code><ul><li>U 和 SJ 可衔接特殊普攻，具体可衔接时机未确认。</li></ul></article>
+<article id="fighter-obito" class="entry" data-kind="fighter" data-own-side="no" data-tags="耐力 无敌 抓取"><p class="entry-label">角色 · 有机制资料</p><h2>“宇智波·斑”</h2><code>obito</code><ul><li>穿透术（U）消耗耐力取得短时间无敌。做出移动和瞬步之外的动作会解除穿透。</li><li>物品吸收释放术（WI）可以抓取金钢对手。选同名辅助时可直接使用豪火球之术。</li></ul><p class="source">readme/3.8.8更新内容.docx</p></article>
+<article id="fighter-ogihci" class="entry" data-kind="fighter" data-own-side="no" data-tags="派生 月牙"><p class="entry-label">角色 · 有机制资料</p><h2>白·一护</h2><code>ogihci</code><ul><li>普通攻击和 U 的突进都可以衔接 U，分别引出特殊月牙攻击。</li></ul></article>
+<article id="fighter-onoki" class="entry" data-kind="fighter" data-own-side="no" data-tags="气量 强化 空中 飞行道具"><p class="entry-label">角色 · 有机制资料</p><h2>大野木</h2><code>onoki</code><ul><li>超轻重岩状态让招式期间维持高度，许多招式可接跳跃。WJ 消耗气量强化攻防，I／WI／SI 的尘遁不会获得这项增伤。</li><li>岩拳（SU）可以在空中使用，岩分身（U）可以配合本体发动岩拳。I 可以长按。</li></ul><p class="source">readme/3.8.8.3补丁调整.png、readme/3.8.8.4补丁调整.png</p></article>
+<article id="fighter-orihime" class="entry" data-kind="fighter" data-own-side="no" data-tags="治疗 回复 追踪 防反"><p class="entry-label">角色 · 有机制资料</p><h2>井上·织姬</h2><code>orihime</code><ul><li>孤天斩盾（WJ）有一定范围的自动追踪。双天归盾（WI）可恢复自身 HP。</li><li>SU 是接触触发的防反。3.8.8.4 移除了它的自动转向并缩短了架势时间。</li></ul><p class="source">readme/3.8.8更新内容.docx、readme/3.8.8.3补丁调整.png、readme/3.8.8.4补丁调整.png</p></article>
+<article id="fighter-orochimaru" class="entry" data-kind="fighter" data-own-side="no" data-tags="飞行道具 无敌"><p class="entry-label">角色 · 有机制资料</p><h2>大蛇丸</h2><code>orochimaru</code><ul><li>超必杀（SI）生成可用方向键操纵的草薙剑。本体在控剑期间无敌。</li></ul><p class="source">readme/3.8.8更新内容.docx、readme/3.8.8.1补丁调整.png</p></article>
+<article id="fighter-pain" class="entry" data-kind="fighter" data-own-side="no" data-tags="变身 替身 派生"><p class="entry-label">角色 · 有机制资料</p><h2>佩恩 六道</h2><code>pain</code><ul><li>六道形态能在各类动作中无额外准备动作地召唤其他五道。替身变为神罗天征。</li><li>图鉴记载超必杀可切换为天道。原版另有 W+A+D 切换输入，当前协议不允许同时发送相反水平键。天道的 WU 末段真命中时可以接 SI。</li></ul><p class="source">readme/3.8.8.1补丁调整.png</p></article>
+<article id="fighter-renji" class="entry" data-kind="fighter" data-own-side="no" data-tags="抵挡 飞行道具 平台 派生"><p class="entry-label">角色 · 有机制资料</p><h2>阿散井·恋次</h2><code>renji</code><ul><li>旋风（WJ）可以挡飞行物。始解 U 存在接下台阶和 KU 的窗口，实际衔接取决于距离、平台和状态。</li></ul><p class="source">readme/3.8.8.3补丁调整.png、readme/3.8.8.4补丁调整.png</p></article>
+<article id="fighter-rukia" class="entry" data-kind="fighter" data-own-side="no" data-tags="破防 空中"><p class="entry-label">角色 · 有机制资料</p><h2>朽木·露琪亚 义骸</h2><code>rukia</code><ul><li>义骸的 KI、I 以及 SI 末段具备破防。SI 保护效果由金钢调整为无敌。</li></ul><p class="source">readme/3.8.8更新内容.docx、readme/3.8.8.3补丁调整.png</p></article>
+<article id="fighter-sado_muerte" class="entry" data-kind="fighter" data-own-side="no" data-tags="防反 承伤"><p class="entry-label">角色 · 有机制资料</p><h2>茶渡·泰虎 魔人</h2><code>sado_muerte</code><ul><li>盾反（SJ）可反弹防御阶段和技能前摇阶段所承受的伤害。</li></ul></article>
+<article id="fighter-sakura" class="entry" data-kind="fighter" data-own-side="no" data-tags="治疗 回复 蓄力 破防"><p class="entry-label">角色 · 有机制资料</p><h2>春野·樱</h2><code>sakura</code><ul><li>部分投掷效果可恢复生命。SU 可额外按住最多 20 帧蓄气，松开进攻并短暂获得白钢。SU 可破防，WJ 的白钢已移除。</li></ul><p class="source">readme/3.8.8更新内容.docx、readme/3.8.8.3补丁调整.png</p></article>
+<article id="fighter-sakura_byakugo" class="entry" data-kind="fighter" data-own-side="no" data-tags="治疗 回复 蓄力"><p class="entry-label">角色 · 有机制资料</p><h2>春野·樱 百豪</h2><code>sakura_byakugo</code><ul><li>樱花冲（SU）可蓄力以提高突进距离和伤害。SU、I、WI、SI 中的部分效果可恢复自身 HP。</li></ul></article>
+<article id="fighter-sasuke" class="entry" data-kind="fighter" data-own-side="no" data-tags="防反 飞行道具 气量"><p class="entry-label">角色 · 有机制资料</p><h2>宇智波·佐助</h2><code>sasuke</code><ul><li>草薙剑招式可抵挡飞行物。普攻第 2 或第 4 段在适当时间再次点按会派生豪火球。</li><li>千鸟流防反（SU）可取消多种招式后摇，耗气可强制触发防反。超必杀未命中时不扣气。</li></ul><p class="source">readme/3.8.8.1补丁调整.png</p></article>
+<article id="fighter-sasuke_susanoo" class="entry" data-kind="fighter" data-own-side="no" data-tags="耐力 钢身 持续伤害"><p class="entry-label">角色 · 有机制资料</p><h2>宇智波·佐助 须佐能乎</h2><code>sasuke_susanoo</code><ul><li>SU 开启须佐能乎并获得钢身，启用期间耗耐力且招式改变。开启后再用 WU 可附着黑炎，灼烧近身对手并加快本方耐力消耗。</li></ul><p class="source">readme/3.8.8.3补丁调整.png</p></article>
+<article id="fighter-soifon" class="entry" data-kind="fighter" data-own-side="no" data-tags="气量 标记 机动"><p class="entry-label">角色 · 有机制资料</p><h2>碎蜂</h2><code>soifon</code><ul><li>瞬哄（SU）持续耗气提高机动，长按会推进气流攻击。</li><li>始解·雀蜂（I）命中有蜂纹华的对手时引爆标记。WI 会给未标记目标加标记，命中已有标记的目标时增加伤害并保留标记。</li></ul><p class="source">readme/3.8.8更新内容.docx、readme/3.8.8.1补丁调整.png</p></article>
+<article id="fighter-starrk" class="entry" data-kind="fighter" data-own-side="no" data-tags="蓄力 召唤 派生"><p class="entry-label">角色 · 有机制资料</p><h2>柯雅泰·史塔克</h2><code>starrk</code><ul><li>SU 的三段攻击都可以用普攻衔接后撤。莉莉妮特在场或对手处于受击状态时，U／WU 的虚闪可免蓄力，并立即收回莉莉妮特。</li></ul><p class="source">readme/3.8.8更新内容.docx、readme/3.8.8.1补丁调整.png</p></article>
+<article id="fighter-suigetsu" class="entry" data-kind="fighter" data-own-side="no" data-tags="耐力 无敌 位移"><p class="entry-label">角色 · 有机制资料</p><h2>鬼灯·水月</h2><code>suigetsu</code><ul><li>水化（SU）可在招式前摇受击或通过特定衔接触发。水化期间持续耗耐且无敌，可以用方向键快速移动。</li></ul></article>
+<article id="fighter-temari" class="entry" data-kind="fighter" data-own-side="no" data-tags="飞行道具"><p class="entry-label">角色 · 有机制资料</p><h2>手鞠</h2><code>temari</code><ul><li>地面 SJ 的旋风可以吹开飞行道具。</li></ul></article>
+<article id="fighter-tensa" class="entry" data-kind="fighter" data-own-side="no" data-tags="强化 空中 联动"><p class="entry-label">角色 · 有机制资料</p><h2>天锁斩月</h2><code>tensa</code><ul><li>地面或空中普攻末段后增加 4 层强化。有层数时跳得更高且空中移速更快。斩月融合（SI）可以转换层数。与完全虚化白一护辅助连招可触发特别融合。</li></ul><p class="source">readme/3.8.8更新内容.docx、readme/3.8.8.1补丁调整.png</p></article>
+<article id="fighter-tobi" class="entry" data-kind="fighter" data-own-side="no" data-tags="充能 耐力 蓄力 抓取"><p class="entry-label">角色 · 有机制资料</p><h2>自称阿飞的男人</h2><code>tobi</code><ul><li>临近受击时用土遁·土龙隐之术（U）可得一格充能，结束土龙隐时按层数强化。SU 的撤离会多耗 20 耐力。</li><li>炸弹投掷（WI）可长按。对方 HP 较低时超必杀会改为物品吸收释放术。</li></ul><p class="source">readme/3.8.8.3补丁调整.png、readme/3.8.8.4补丁调整.png</p></article>
+<article id="fighter-toushirou" class="entry" data-kind="fighter" data-own-side="no" data-tags="空中 飞行道具 钢身"><p class="entry-label">角色 · 部分资料</p><h2>日番谷·冬狮郎</h2><code>toushirou</code><ul><li>3.8.6.5 留档的始解形态，空中普攻可接飞行道具 KU，SJ 带白钢，U 有后续二段。当前版的衔接时机与伤害待验证。</li></ul><p class="source">历史留档/3.8.6.5更新内容.docx</p></article>
+<article id="fighter-ulquiorra" class="entry" data-kind="fighter" data-own-side="no" data-tags="普攻"><p class="entry-label">角色 · 部分资料</p><h2>乌尔奇奥拉·西法</h2><code>ulquiorra</code><ul><li>补丁记录普攻第一段造成的僵直增加 2 帧，角色受击范围加宽。完整招式效果与资源代价未确认。</li></ul><p class="source">readme/3.8.8.3补丁调整.png、readme/3.8.8.4补丁调整.png</p></article>
+<article id="fighter-uryuu" class="entry" data-kind="fighter" data-own-side="no" data-tags="空中 射击 飞行道具"><p class="entry-label">角色 · 有机制资料</p><h2>石田·雨龙</h2><code>uryuu</code><ul><li>空中普攻和技能可调整射击角度。</li></ul></article>
+<article id="fighter-yoruichi" class="entry effect-on-own-side" data-kind="fighter" data-own-side="yes" data-tags="自身扣血 耐力 机动"><p class="entry-label">角色 · 有机制资料</p><h2>四枫院·夜一</h2><code>yoruichi</code><ul><li>瞬哄·雷神战形（WJ）用本方 HP 换耐力和若干招式强化。历史 3.8.5.8 留档曾记载每耗 10 HP 额外得 10 耐力，当前数值待验证。</li><li>冲刺（U、KU、L）中可接 I 强化机动并回复耐力。U／KU 可连续三次，方向可调。选同名辅助可变化为黑猫。</li></ul><p class="source">readme/3.8.8更新内容.docx、历史留档/3.8.5.8更新内容.docx</p></article>
+<article id="assist-aizen_muken" class="entry effect-on-own-side" data-kind="assist" data-own-side="yes" data-tags="影响己方 影响双方 减速 飞行道具"><p class="entry-label">辅助 · 有机制资料</p><h2>蓝染·惣右介 无间封印</h2><code>aizen_muken</code><ul><li>灵压减缓双方行动，扩散时有能越过防御、防反和霸体的攻击判定并破坏飞行物。</li><li>新增该辅助时的官方留档写明，黑棺触发门槛为对手 HP 低于 200 且未处于无敌状态。双方减速已确认，己方扣血条件未确认。</li></ul><p class="source">readme/3.8.8更新内容.docx、历史留档/3.8.5更新内容.docx</p></article>
+<article id="assist-bonnie" class="entry effect-on-own-side" data-kind="assist" data-own-side="yes" data-tags="影响己方 携带 返还"><p class="entry-label">辅助 · 有机制资料</p><h2>波妮</h2><code>bonnie</code><ul><li>接触到角色会带其冲锋，撞边后退出并返还辅助能量。可用 up+assist 或 down+assist 改变出场位置。是否扣己方 HP 未确认。</li></ul><p class="source">readme/3.8.8更新内容.docx</p></article>
+<article id="assist-byakuya" class="entry" data-kind="assist" data-own-side="no" data-tags=""><p class="entry-label">辅助 · 技能待验证</p><h2>朽木·白哉</h2><code>byakuya</code><ul><li>当前版本资料可确认名称和 ID，具体招式、伤害和触发条件待实测。</li></ul></article>
+<article id="assist-choji" class="entry effect-on-own-side" data-kind="assist" data-own-side="yes" data-tags="友伤 无差别 反弹 影响己方"><p class="entry-label">辅助 · 有机制资料</p><h2>秋道·丁次</h2><code>choji</code><ul><li>肉弹战车会在场内滚动，撞击判定不分敌我。触边回弹会持续强化撞击。请将己方也视为可能被击中的目标。</li></ul></article>
+<article id="assist-debug" class="entry" data-kind="assist" data-own-side="no" data-tags="工具"><p class="entry-label">辅助 · 有机制资料</p><h2>反暗改监督装置</h2><code>debug</code><ul><li>该 ID 出现在候选名单中。游戏图鉴标注其旧功能已失修，诊断功能改由原版插件菜单提供。未确认 `assist` 的战斗效果。</li></ul></article>
+<article id="assist-fukasaku" class="entry" data-kind="assist" data-own-side="no" data-tags="防御 增益"><p class="entry-label">辅助 · 有机制资料</p><h2>深作仙人&amp;志麻仙人</h2><code>fukasaku</code><ul><li>为使用方提供 +30% 防御，持续 7.5 秒。</li></ul></article>
+<article id="assist-gaara" class="entry" data-kind="assist" data-own-side="no" data-tags="钢身 防守 墙体"><p class="entry-label">辅助 · 有机制资料</p><h2>我爱罗</h2><code>gaara</code><ul><li>在砂盾内可获得白钢，砂盾能阻挡对手的移动。</li></ul></article>
+<article id="assist-gin" class="entry" data-kind="assist" data-own-side="no" data-tags=""><p class="entry-label">辅助 · 技能待验证</p><h2>市丸·银</h2><code>gin</code><ul><li>当前版本资料可确认名称和 ID，具体招式、伤害和触发条件待实测。</li></ul></article>
+<article id="assist-grimmjow" class="entry" data-kind="assist" data-own-side="no" data-tags=""><p class="entry-label">辅助 · 技能待验证</p><h2>葛力姆乔·贾卡杰克</h2><code>grimmjow</code><ul><li>当前版本资料可确认名称和 ID，具体招式、伤害和触发条件待实测。</li></ul></article>
+<article id="assist-harribel_resurrection" class="entry" data-kind="assist" data-own-side="no" data-tags="持续攻击"><p class="entry-label">辅助 · 有机制资料</p><h2>蒂雅·赫丽贝尔 归刃</h2><code>harribel_resurrection</code><ul><li>断瀑没有直接命中则接续水流攻击。3.8.8 基础更新将主伤害调到 280，防御惩罚随之调整。</li></ul><p class="source">readme/3.8.8更新内容.docx</p></article>
+<article id="assist-hinata" class="entry" data-kind="assist" data-own-side="no" data-tags=""><p class="entry-label">辅助 · 技能待验证</p><h2>日向·雏田</h2><code>hinata</code><ul><li>当前版本资料可确认名称和 ID，具体招式、伤害和触发条件待实测。</li></ul></article>
+<article id="assist-hiruko" class="entry" data-kind="assist" data-own-side="no" data-tags="充能 冷却"><p class="entry-label">辅助 · 部分资料</p><h2>人傀儡·绯流琥</h2><code>hiruko</code><ul><li>辅助充能速率 0.15，补丁给出的等效回满时间约为 22.22 秒。攻击范围和目标待确认。</li></ul><p class="source">readme/3.8.8.1补丁调整.png</p></article>
+<article id="assist-hiyori" class="entry" data-kind="assist" data-own-side="no" data-tags=""><p class="entry-label">辅助 · 技能待验证</p><h2>猿柿·日世里</h2><code>hiyori</code><ul><li>当前版本资料可确认名称和 ID，具体招式、伤害和触发条件待实测。</li></ul></article>
+<article id="assist-ichigo_dangai" class="entry" data-kind="assist" data-own-side="no" data-tags=""><p class="entry-label">辅助 · 技能待验证</p><h2>黑崎·一护 最后的月牙天冲</h2><code>ichigo_dangai</code><ul><li>当前版本资料可确认名称和 ID，具体招式、伤害和触发条件待实测。</li></ul></article>
+<article id="assist-ikkaku_bankai" class="entry" data-kind="assist" data-own-side="no" data-tags=""><p class="entry-label">辅助 · 技能待验证</p><h2>斑目·一角 卍解</h2><code>ikkaku_bankai</code><ul><li>当前版本资料可确认名称和 ID，具体招式、伤害和触发条件待实测。</li></ul></article>
+<article id="assist-ino" class="entry" data-kind="assist" data-own-side="no" data-tags=""><p class="entry-label">辅助 · 技能待验证</p><h2>山中·井野</h2><code>ino</code><ul><li>当前版本资料可确认名称和 ID，具体招式、伤害和触发条件待实测。</li></ul></article>
+<article id="assist-isane" class="entry effect-on-own-side" data-kind="assist" data-own-side="yes" data-tags="影响己方 影响双方 地形"><p class="entry-label">辅助 · 有机制资料</p><h2>虎彻·勇音</h2><code>isane</code><ul><li>让地面变滑，双方移动后均难以立即刹停。该说明确认的是对移动的影响。</li></ul></article>
+<article id="assist-itachi" class="entry" data-kind="assist" data-own-side="no" data-tags=""><p class="entry-label">辅助 · 技能待验证</p><h2>宇智波·鼬</h2><code>itachi</code><ul><li>当前版本资料可确认名称和 ID，具体招式、伤害和触发条件待实测。</li></ul></article>
+<article id="assist-jiraiya" class="entry" data-kind="assist" data-own-side="no" data-tags="攻击"><p class="entry-label">辅助 · 部分资料</p><h2>自来也</h2><code>jiraiya</code><ul><li>补丁将伤害调为 240，并更新了攻击范围与末段持续时间。攻击判定形状、可命中目标和额外条件未确认。</li></ul><p class="source">readme/3.8.8.1补丁调整.png</p></article>
+<article id="assist-kabuto" class="entry" data-kind="assist" data-own-side="no" data-tags="落空 陷阱"><p class="entry-label">辅助 · 有机制资料</p><h2>药师·兜</h2><code>kabuto</code><ul><li>查克拉手术刀若落空，会在场上留下一处死魂陷阱。</li></ul></article>
+<article id="assist-karin" class="entry" data-kind="assist" data-own-side="no" data-tags="治疗 回复 耐力"><p class="entry-label">辅助 · 有机制资料</p><h2>香燐</h2><code>karin</code><ul><li>短暂前摇后给使用方 60 帧耐力充盈。使用方是佐助时还可治疗。</li><li>3.8.8 基础说明原为 30 帧，3.8.8.1 已改为 60 帧。</li></ul><p class="source">readme/3.8.8.1补丁调整.png</p></article>
+<article id="assist-kenpachi" class="entry" data-kind="assist" data-own-side="no" data-tags="承伤 防反 联动"><p class="entry-label">辅助 · 部分资料</p><h2>更木·剑八</h2><code>kenpachi</code><ul><li>和主角色更木·剑八搭配时有原地承伤反击，蓄气期间保持满耐力。搭配其他主角色的效果待确认。</li></ul><p class="source">readme/3.8.8.1补丁调整.png</p></article>
+<article id="assist-kensei" class="entry effect-on-own-side" data-kind="assist" data-own-side="yes" data-tags="影响己方 影响双方 吹飞"><p class="entry-label">辅助 · 有机制资料</p><h2>六车·拳西</h2><code>kensei</code><ul><li>生成一阵能影响全场对象的风，处于必杀状态的角色不受影响。3.8.8.1 将吹飞时长改为 5 帧，吹飞状态可正常结算后续攻击。辅助本身是否扣己方 HP 未确认。</li></ul><p class="source">readme/3.8.8更新内容.docx、readme/3.8.8.1补丁调整.png</p></article>
+<article id="assist-kimimaro" class="entry" data-kind="assist" data-own-side="no" data-tags="骨刺 联动"><p class="entry-label">辅助 · 部分资料</p><h2>君麻吕</h2><code>kimimaro</code><ul><li>和君麻吕·音忍五人众联动时，召唤可直接生成骨刺。一般召唤效果待确认。</li></ul><p class="source">readme/3.8.8.1补丁调整.png</p></article>
+<article id="assist-kira" class="entry" data-kind="assist" data-own-side="no" data-tags="充能 返还 强化"><p class="entry-label">辅助 · 有机制资料</p><h2>吉良·伊鹤</h2><code>kira</code><ul><li>命中后返还 80% 辅助能量，并强化下一次辅助攻击。</li></ul></article>
+<article id="assist-kon" class="entry" data-kind="assist" data-own-side="no" data-tags="增益 攻击力"><p class="entry-label">辅助 · 有机制资料</p><h2>魂</h2><code>kon</code><ul><li>给使用方 +30% 攻击力，持续 5 秒。</li></ul></article>
+<article id="assist-madara" class="entry" data-kind="assist" data-own-side="no" data-tags="抓取 防反"><p class="entry-label">辅助 · 有机制资料</p><h2>宇智波·斑</h2><code>madara</code><ul><li>抓取可以破掉防反状态。</li></ul></article>
+<article id="assist-minato" class="entry" data-kind="assist" data-own-side="no" data-tags="位移 二次辅助 充能"><p class="entry-label">辅助 · 有机制资料</p><h2>波风·水门</h2><code>minato</code><ul><li>首次召唤向外投飞雷神苦无，并使使用方速度提高 2 持续 6 秒。苦无仍在飞行或命中留下标记时，可再次召唤并把角色带到苦无或标记处。等效回满约 20.83 秒。</li></ul><p class="source">readme/3.8.8.1补丁调整.png</p></article>
+<article id="assist-naruto" class="entry" data-kind="assist" data-own-side="no" data-tags="召唤 分身"><p class="entry-label">辅助 · 有机制资料</p><h2>漩涡·鸣人</h2><code>naruto</code><ul><li>召唤会自行行动的影分身。分身完成一套普攻或受到攻击就会消失。</li></ul></article>
+<article id="assist-nel" class="entry" data-kind="assist" data-own-side="no" data-tags="召唤条件"><p class="entry-label">辅助 · 部分资料</p><h2>妮露</h2><code>nel</code><ul><li>图鉴记载妮露可在任意状态下召唤，攻击方式、资源扣除与命中条件待确认。</li></ul></article>
+<article id="assist-nemu" class="entry" data-kind="assist" data-own-side="no" data-tags="自身资源 充能 耗尽 回溯"><p class="entry-label">辅助 · 有机制资料</p><h2>涅·音梦</h2><code>nemu</code><ul><li>辅助本体消耗魂魄施放义魂重轮枪，最多 5 次，威能逐次衰减。耗尽后只能发小功率灵弹。</li><li>小队对战的回溯效果有专门触发和次数限制。图鉴给出每输一局可以回溯两次，魂魄耗尽时无法触发。消耗的是辅助魂魄，主角色是否扣 HP 未确认。</li></ul></article>
+<article id="assist-obito" class="entry" data-kind="assist" data-own-side="no" data-tags="豪火球 联动"><p class="entry-label">辅助 · 部分资料</p><h2>“宇智波·斑”</h2><code>obito</code><ul><li>搭配主角色 obito 时会直接使用豪火球。与其他主角色搭配的具体效果待确认。</li></ul></article>
+<article id="assist-ogihci_vasto_lord" class="entry" data-kind="assist" data-own-side="no" data-tags="联动 强化"><p class="entry-label">辅助 · 部分资料</p><h2>白·一护 完全虚化</h2><code>ogihci_vasto_lord</code><ul><li>与天锁斩月组成连招时可触发特别的斩月融合。独立召唤的详细攻击和资源未确认。</li></ul></article>
+<article id="assist-onoki" class="entry" data-kind="assist" data-own-side="no" data-tags="平台 台阶"><p class="entry-label">辅助 · 有机制资料</p><h2>大野木</h2><code>onoki</code><ul><li>制造临时的岩石台阶，切换场景会移除这类平台。</li></ul><p class="source">readme/3.8.8更新内容.docx</p></article>
+<article id="assist-orihime" class="entry" data-kind="assist" data-own-side="no" data-tags="治疗 回复 气量 钢身"><p class="entry-label">辅助 · 有机制资料</p><h2>井上·织姬</h2><code>orihime</code><ul><li>使用方 HP 越低，增益越强。单按 assist 短时间给金钢，up+assist 立即给气量，down+assist 开启持续治疗。</li></ul></article>
+<article id="assist-rangiku" class="entry" data-kind="assist" data-own-side="no" data-tags="击倒 多段"><p class="entry-label">辅助 · 部分资料</p><h2>松本·乱菊</h2><code>rangiku</code><ul><li>3.8.5 留档记载其攻击最后一段造成击倒，3.8.6.5 更新了角色素材。当前的攻击范围和伤害待确认。</li></ul><p class="source">历史留档/3.8.5更新内容.docx、历史留档/3.8.6.5更新内容.docx</p></article>
+<article id="assist-renji" class="entry" data-kind="assist" data-own-side="no" data-tags=""><p class="entry-label">辅助 · 技能待验证</p><h2>阿散井·恋次</h2><code>renji</code><ul><li>当前版本资料可确认名称和 ID，具体招式、伤害和触发条件待实测。</li></ul></article>
+<article id="assist-riruka" class="entry" data-kind="assist" data-own-side="no" data-tags="场景 召唤 猪肉先生"><p class="entry-label">辅助 · 有机制资料</p><h2>毒峰·莉露卡</h2><code>riruka</code><ul><li>首次在普通场地使用可换到玩偶屋，屋内再次召唤会生成有少量生命值的猪肉先生。</li><li>3.8.8.4 移除其落地无敌并降低耐力上限，耐力用尽会去掉它的钢身。</li></ul><p class="source">readme/3.8.8更新内容.docx、readme/3.8.8.4补丁调整.png</p></article>
+<article id="assist-sai" class="entry" data-kind="assist" data-own-side="no" data-tags="破防 多段"><p class="entry-label">辅助 · 有机制资料</p><h2>佐井</h2><code>sai</code><ul><li>前段可破防，后段的破防被移除。补丁将末段伤害调为 120，完整判定未知。</li></ul><p class="source">readme/3.8.8.4补丁调整.png</p></article>
+<article id="assist-sakura_byakugo" class="entry" data-kind="assist" data-own-side="no" data-tags="命中 捕捉 多段"><p class="entry-label">辅助 · 有机制资料</p><h2>春野·樱 百豪</h2><code>sakura_byakugo</code><ul><li>一段命中对象后可触发二段。后续捕捉只在对手角色处于附近时生效。</li></ul><p class="source">readme/3.8.8.3补丁调整.png</p></article>
+<article id="assist-sasuke_amenotejikara" class="entry effect-on-own-side" data-kind="assist" data-own-side="yes" data-tags="影响己方 换位 飞行道具"><p class="entry-label">辅助 · 有机制资料</p><h2>宇智波·佐助 天手力</h2><code>sasuke_amenotejikara</code><ul><li>单按 assist 时交换双方角色位置。up+assist 换到己方飞行物的位置，down+assist 换到对方飞行物的位置。</li><li>3.8.5 留档记载找不到相应飞行物时会回退到双方换位。距离选择规则在当前版本待实测。</li></ul><p class="source">历史留档/3.8.5更新内容.docx</p></article>
+<article id="assist-shikamaru" class="entry" data-kind="assist" data-own-side="no" data-tags=""><p class="entry-label">辅助 · 技能待验证</p><h2>奈良·鹿丸</h2><code>shikamaru</code><ul><li>当前版本资料可确认名称和 ID，具体招式、伤害和触发条件待实测。</li></ul></article>
+<article id="assist-shishio" class="entry" data-kind="assist" data-own-side="no" data-tags="充能 返还"><p class="entry-label">辅助 · 有机制资料</p><h2>志志雄·真实</h2><code>shishio</code><ul><li>命中时返还 50% 辅助能量。</li></ul></article>
+<article id="assist-shunsui" class="entry" data-kind="assist" data-own-side="no" data-tags="服装 方向辅助"><p class="entry-label">辅助 · 有机制资料</p><h2>京乐·春水</h2><code>shunsui</code><ul><li>使用艳鬼。单按 assist 对应粉色，up+assist 为白色，down+assist 为黑色。对手身上指定色面积越大，斩击越强。</li></ul></article>
+<article id="assist-soifon" class="entry" data-kind="assist" data-own-side="no" data-tags="攻击 充能"><p class="entry-label">辅助 · 部分资料</p><h2>碎蜂</h2><code>soifon</code><ul><li>补丁将伤害调为 300，等效回满时间约为 25.64 秒。命中条件待确认。</li></ul><p class="source">readme/3.8.8.1补丁调整.png</p></article>
+<article id="assist-starrk_resurrection" class="entry" data-kind="assist" data-own-side="no" data-tags="追踪 召唤 充能"><p class="entry-label">辅助 · 有机制资料</p><h2>柯雅泰·史塔克 归刃</h2><code>starrk_resurrection</code><ul><li>召出狼群在全场持续追击，可通过直接攻击角色来阻止。等效回满时间约为 22.22 秒。</li></ul><p class="source">readme/3.8.8.4补丁调整.png</p></article>
+<article id="assist-suigetsu_taka" class="entry" data-kind="assist" data-own-side="no" data-tags="受击触发 反击"><p class="entry-label">辅助 · 有机制资料</p><h2>鬼灯·水月 鹰小队</h2><code>suigetsu_taka</code><ul><li>水化潜伏。使用方受击时从对手背后偷袭，等待达到上限仍未触发时也会出击。</li></ul></article>
+<article id="assist-tayuya" class="entry" data-kind="assist" data-own-side="no" data-tags=""><p class="entry-label">辅助 · 技能待验证</p><h2>多由也</h2><code>tayuya</code><ul><li>当前版本资料可确认名称和 ID，具体招式、伤害和触发条件待实测。</li></ul></article>
+<article id="assist-temari" class="entry" data-kind="assist" data-own-side="no" data-tags="位移 持续效果"><p class="entry-label">辅助 · 有机制资料</p><h2>手鞠</h2><code>temari</code><ul><li>发动持续强风推动对手。</li></ul></article>
+<article id="assist-tenten" class="entry" data-kind="assist" data-own-side="no" data-tags="充能 冷却"><p class="entry-label">辅助 · 部分资料</p><h2>天天</h2><code>tenten</code><ul><li>辅助充能速率 0.15，补丁给出的等效回满时间约为 22.22 秒。攻击与命中条件待确认。</li></ul><p class="source">readme/3.8.8.4补丁调整.png</p></article>
+<article id="assist-toushirou" class="entry" data-kind="assist" data-own-side="no" data-tags="控制 冻结"><p class="entry-label">辅助 · 有机制资料</p><h2>日番谷·冬狮郎</h2><code>toushirou</code><ul><li>冻结令对手无法行动并获得与白钢相当的保护。攻击冻结目标会减伤，且冻结期攻击不计入连段保护。冻结不再锁定位置和重力，未冻住时也不会附带击倒。</li></ul><p class="source">readme/3.8.8更新内容.docx</p></article>
+<article id="assist-tsunade" class="entry" data-kind="assist" data-own-side="no" data-tags="治疗 回复"><p class="entry-label">辅助 · 有机制资料</p><h2>纲手</h2><code>tsunade</code><ul><li>召唤时给使用方少量治疗，具体恢复量未确认。</li></ul></article>
+<article id="assist-urahara" class="entry" data-kind="assist" data-own-side="no" data-tags="位移 穿界门 辅助能量 冷却"><p class="entry-label">辅助 · 有机制资料</p><h2>浦原·喜助</h2><code>urahara</code><ul><li>开局布置一扇穿界门，给满辅助能量。down+assist 可在本方原地再布门。使用门穿梭有独立冷却，不耗辅助能量。</li></ul></article>
+<article id="assist-uryuu" class="entry" data-kind="assist" data-own-side="no" data-tags=""><p class="entry-label">辅助 · 技能待验证</p><h2>石田·雨龙</h2><code>uryuu</code><ul><li>当前版本资料可确认名称和 ID，具体招式、伤害和触发条件待实测。</li></ul></article>
+<article id="assist-utakata" class="entry" data-kind="assist" data-own-side="no" data-tags=""><p class="entry-label">辅助 · 技能待验证</p><h2>泡沫</h2><code>utakata</code><ul><li>当前版本资料可确认名称和 ID，具体招式、伤害和触发条件待实测。</li></ul></article>
+<article id="assist-yachiru" class="entry" data-kind="assist" data-own-side="no" data-tags="移动 速度 增益"><p class="entry-label">辅助 · 有机制资料</p><h2>草鹿·八千流</h2><code>yachiru</code><ul><li>攻击后会留场往返。使用方碰到她可以获得持续 2 秒的 +6 速度。</li></ul></article>
+<article id="assist-yamamoto" class="entry" data-kind="assist" data-own-side="no" data-tags="攻击 火柱 充能"><p class="entry-label">辅助 · 有机制资料</p><h2>山本·元柳斎·重国</h2><code>yamamoto</code><ul><li>火柱攻击。补丁将火柱伤害调为 300，并将等效回满时间调为约 30.30 秒。</li></ul><p class="source">readme/3.8.8.1补丁调整.png、readme/3.8.8.2补丁调整.png</p></article>
+<article id="assist-yoruichi" class="entry" data-kind="assist" data-own-side="no" data-tags="位移 速度 增益 充能"><p class="entry-label">辅助 · 有机制资料</p><h2>四枫院·夜一</h2><code>yoruichi</code><ul><li>立即带使用方向前传送短距离，提供 3 秒的 +2 速度。等效回满时间约为 20.83 秒。</li></ul><p class="source">readme/3.8.8.1补丁调整.png</p></article>
+<article id="assist-zetsu" class="entry" data-kind="assist" data-own-side="no" data-tags="触发 落地 陷阱"><p class="entry-label">辅助 · 有机制资料</p><h2>绝</h2><code>zetsu</code><ul><li>召唤后潜入地下等待。对手落地时会从其脚下出击。</li></ul></article>
+    </section>
+  </main>
+  <script>
+    const filters = document.getElementById('filters');
+    const query = document.getElementById('query');
+    const kind = document.getElementById('kind');
+    const ownSide = document.getElementById('own-side');
+    const count = document.getElementById('count');
+    function normalize(value) {
+      return value.normalize('NFKC').toLowerCase().replace(/[·、—“”\s]/g, '');
+    }
+    const entries = Array.from(document.querySelectorAll('.entry'), node => ({
+      node,
+      searchText: normalize(node.textContent + node.dataset.tags)
+    }));
+    function filterEntries() {
+      const terms = query.value.trim().split(/\s+/).map(normalize).filter(Boolean);
+      let visible = 0;
+      for (const {node, searchText} of entries) {
+        const matchesKind = kind.value === 'all' || kind.value === node.dataset.kind;
+        const matchesOwnSide = !ownSide.checked || node.dataset.ownSide === 'yes';
+        const matchesQuery = terms.every(term => searchText.includes(term));
+        node.hidden = !(matchesKind && matchesOwnSide && matchesQuery);
+        if (!node.hidden) visible += 1;
+      }
+      count.textContent = visible ? '显示 ' + visible + ' 项' : '没有匹配项，可换个词或调整筛选。';
+    }
+    query.addEventListener('input', filterEntries);
+    kind.addEventListener('change', filterEntries);
+    ownSide.addEventListener('change', filterEntries);
+    filters.hidden = false;
+    count.hidden = false;
+    filterEntries();
+  </script>
+</body>
+</html>
