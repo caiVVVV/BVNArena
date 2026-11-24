@@ -4,7 +4,7 @@ BVNArena 是一个 Windows 本地裁判和 AI 选手 SDK，适配《死神 vs �
 
 ## 玩家对 AI
 
-1. 准备自己解压的 Windows 竞技版 3.8.8.5。运行 `BVNArena-Setup.exe`，选择含 `version.json` 和原游戏 EXE 的目录。
+1. 在 B 站搜索 [死神VS火影 竞技版 3.8.8.5](https://search.bilibili.com/all?keyword=%E6%AD%BB%E7%A5%9EVS%E7%81%AB%E5%BD%B1%20%E7%AB%9E%E6%8A%80%E7%89%88%203.8.8.5)，查看官方账号 [死神VS火影吧](https://space.bilibili.com/1340107883) 的下载指引，确认下载的是 Windows 电脑版 3.8.8.5。解压后运行 `BVNArena-Setup.exe`，选择含 `version.json` 和原游戏 EXE 的目录。
 2. 打开游戏目录下的 `AIArena/BVNArena.exe`，在「比赛模式」选择「玩家对 AI（单局）」。
 3. 选择三名英雄的出场顺序、一个辅助和地图。从 P2 选一个带 `entrant.json` 的 AI 文件夹。安装后可先选 `AIArena/SDK/Examples` 中的任一样例。
 4. 点击「开始比赛」。游戏窗口开启后，用原版 P1 键位操作。AI 通过裁判操作 P2。
