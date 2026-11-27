@@ -1,0 +1,7 @@
+{
+  "name": "GPT-6.2 Sol",
+  "color": "#16877F",
+  "protocol": 1,
+  "engine": "bundled-python",
+  "script": "bot.py"
+}

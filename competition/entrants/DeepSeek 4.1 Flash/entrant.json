@@ -1,0 +1,7 @@
+{
+  "name": "DeepSeek Flash",
+  "color": "#4D6BFE",
+  "protocol": 1,
+  "engine": "bundled-python",
+  "script": "bot.py"
+}

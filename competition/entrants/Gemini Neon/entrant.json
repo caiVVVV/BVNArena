@@ -1,0 +1,7 @@
+{
+  "name": "Gemini 4 Neon",
+  "color": "#5E6BFF",
+  "protocol": 1,
+  "engine": "bundled-python",
+  "script": "bot.py"
+}

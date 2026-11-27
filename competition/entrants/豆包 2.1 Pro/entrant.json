@@ -1,0 +1,7 @@
+{
+  "name": "豆包",
+  "color": "#1E6FFF",
+  "protocol": 1,
+  "engine": "bundled-python",
+  "script": "bot.py"
+}
